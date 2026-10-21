@@ -1,0 +1,16 @@
+{
+  "name": "itam-publication-review",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "node tools/run-offline.mjs demo",
+    "demo": "node tools/run-offline.mjs demo",
+    "build": "node tools/run-offline.mjs demo:build",
+    "typecheck": "node tools/run-offline.mjs demo:typecheck",
+    "test": "node tools/run-offline.mjs demo:test",
+    "check:core:lint": "node tools/run-offline.mjs core:lint",
+    "check:core:types": "node tools/run-offline.mjs core:typecheck",
+    "check:core:test": "node tools/run-offline.mjs core:test",
+    "check:core:build": "node tools/run-offline.mjs core:build"
+  }
+}

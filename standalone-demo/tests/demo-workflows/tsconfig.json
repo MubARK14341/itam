@@ -1,0 +1,5 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["./*.ts", "../demo-browser/helpers.ts"],
+  "exclude": ["../../node_modules", "../../dist"]
+}

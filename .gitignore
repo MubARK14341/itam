@@ -1,0 +1,17 @@
+node_modules/
+.next*/
+.expo*/
+dist/
+.demo-client/
+.env*
+!.env.example
+*.tsbuildinfo
+artifacts/
+test-results/
+.DS_Store
+.vercel/
+.netlify/
+out/
+.file-preview/
+local-preview.html
+premium-audit.json

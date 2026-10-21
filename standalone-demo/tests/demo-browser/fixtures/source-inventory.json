@@ -1,0 +1,1844 @@
+{
+  "schemaVersion": 1,
+  "sourceRoot": "/SOURCE/Desktop/item-workspace/item/itam-app",
+  "sourceBase": "de646a940c7edbba97804b8311274ff70a7efa28",
+  "purpose": "Source requirements only; original app evidence does not prove demo behavior.",
+  "routes": [
+    {
+      "sourceFile": "src/app/(app)/activity/page.tsx",
+      "route": "/activity",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/alerts/page.tsx",
+      "route": "/alerts",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/assets/[id]/page.tsx",
+      "route": "/assets/[id]",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/assets/import/page.tsx",
+      "route": "/assets/import",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/assets/new/page.tsx",
+      "route": "/assets/new",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/assets/page.tsx",
+      "route": "/assets",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/consumables/[id]/page.tsx",
+      "route": "/consumables/[id]",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/consumables/page.tsx",
+      "route": "/consumables",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/dashboard/page.tsx",
+      "route": "/dashboard",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/maintenance/page.tsx",
+      "route": "/maintenance",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/my-assets/page.tsx",
+      "route": "/my-assets",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/my-requests/page.tsx",
+      "route": "/my-requests",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/my-tasks/page.tsx",
+      "route": "/my-tasks",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/overview/page.tsx",
+      "route": "/overview",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/purchase-requests/page.tsx",
+      "route": "/purchase-requests",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/reports/page.tsx",
+      "route": "/reports",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/requests/[id]/page.tsx",
+      "route": "/requests/[id]",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/requests/new/page.tsx",
+      "route": "/requests/new",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/requests/page.tsx",
+      "route": "/requests",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/scan/page.tsx",
+      "route": "/scan",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/settings/page.tsx",
+      "route": "/settings",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/stocktakes/page.tsx",
+      "route": "/stocktakes",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(app)/warehouse/page.tsx",
+      "route": "/warehouse",
+      "kind": "staff",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(portal)/client-portal/page.tsx",
+      "route": "/client-portal",
+      "kind": "portal",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(portal)/client-portal/profile/page.tsx",
+      "route": "/client-portal/profile",
+      "kind": "portal",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(portal)/client-portal/requests/[id]/page.tsx",
+      "route": "/client-portal/requests/[id]",
+      "kind": "portal",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(portal)/client-portal/requests/new/page.tsx",
+      "route": "/client-portal/requests/new",
+      "kind": "portal",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/(portal)/client-portal/requests/page.tsx",
+      "route": "/client-portal/requests",
+      "kind": "portal",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/a/[token]/page.tsx",
+      "route": "/a/[token]",
+      "kind": "public",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/auth/mfa/page.tsx",
+      "route": "/auth/mfa",
+      "kind": "public",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/client-portal-register/page.tsx",
+      "route": "/client-portal-register",
+      "kind": "public",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/login/page.tsx",
+      "route": "/login",
+      "kind": "public",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/page.tsx",
+      "route": "/",
+      "kind": "public",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/pending-approval/page.tsx",
+      "route": "/pending-approval",
+      "kind": "public",
+      "demoEvidence": "not-run"
+    },
+    {
+      "sourceFile": "src/app/register/page.tsx",
+      "route": "/register",
+      "kind": "public",
+      "demoEvidence": "not-run"
+    }
+  ],
+  "actions": [
+    {
+      "key": "src/app/(app)/alerts/page-client.tsx::refresh#1",
+      "sourceFile": "src/app/(app)/alerts/page-client.tsx",
+      "sourceLine": 84,
+      "directContracts": [
+        "service:beginOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:completeOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:getActionAlertOperationalCounts (@/lib/action-center)",
+        "service:isCurrentOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:listActionAlertsPage (@/lib/action-center)",
+        "service:resolveUserLabels (@/lib/action-center)",
+        "service:syncActionAlerts (@/lib/action-center)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/alerts/page-client.tsx::exportCsv#1",
+      "sourceFile": "src/app/(app)/alerts/page-client.tsx",
+      "sourceLine": 159,
+      "directContracts": [
+        "service:collectCursorPages (@/lib/pagination)",
+        "service:downloadCSV (@/lib/export)",
+        "service:listActionAlertsPage (@/lib/action-center)",
+        "service:resolveUserLabels (@/lib/action-center)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/alerts/page-client.tsx::act#1",
+      "sourceFile": "src/app/(app)/alerts/page-client.tsx",
+      "sourceLine": 171,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/assets/[id]/page.tsx::refresh#1",
+      "sourceFile": "src/app/(app)/assets/[id]/page.tsx",
+      "sourceLine": 129,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/assets/import/page.tsx::downloadTemplate#1",
+      "sourceFile": "src/app/(app)/assets/import/page.tsx",
+      "sourceLine": 59,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/assets/import/page.tsx::downloadErrors#1",
+      "sourceFile": "src/app/(app)/assets/import/page.tsx",
+      "sourceLine": 114,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/assets/import/page.tsx::confirm#1",
+      "sourceFile": "src/app/(app)/assets/import/page.tsx",
+      "sourceLine": 122,
+      "directContracts": [
+        "service:importInventory (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/assets/import/page.tsx::reset#1",
+      "sourceFile": "src/app/(app)/assets/import/page.tsx",
+      "sourceLine": 134,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/assets/page-client.tsx::loadInventory#1",
+      "sourceFile": "src/app/(app)/assets/page-client.tsx",
+      "sourceLine": 128,
+      "directContracts": [
+        "service:beginOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:completeOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:friendlyErrorStrict (@/lib/user-facing-errors)",
+        "service:inventoryPaginationPlan (@/lib/inventory-pagination)",
+        "service:listAssetsPage (@/lib/queries)",
+        "service:listConsumablesPage (@/lib/queries)",
+        "service:skippedInventoryPage (@/lib/inventory-pagination)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/assets/page-client.tsx::exportView#1",
+      "sourceFile": "src/app/(app)/assets/page-client.tsx",
+      "sourceLine": 210,
+      "directContracts": [
+        "service:collectCursorPages (@/lib/pagination)",
+        "service:downloadCSV (@/lib/export)",
+        "service:friendlyErrorStrict (@/lib/user-facing-errors)",
+        "service:listAssetsPage (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/assets/page-client.tsx::exportSelected#1",
+      "sourceFile": "src/app/(app)/assets/page-client.tsx",
+      "sourceLine": 287,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/consumables/[id]/page.tsx::exportLedger#1",
+      "sourceFile": "src/app/(app)/consumables/[id]/page.tsx",
+      "sourceLine": 149,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)",
+        "service:formatDateTime (@/lib/format)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/consumables/[id]/page.tsx::uploadAtt#1",
+      "sourceFile": "src/app/(app)/consumables/[id]/page.tsx",
+      "sourceLine": 165,
+      "directContracts": [
+        "service:getConsumableAttachments (@/lib/queries)",
+        "service:uploadConsumableAttachment (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/my-assets/page-client.tsx::submitIssue#1",
+      "sourceFile": "src/app/(app)/my-assets/page-client.tsx",
+      "sourceLine": 73,
+      "directContracts": [
+        "service:reportMyAssetIssue (@/lib/employee-self-service)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/my-assets/page-client.tsx::submitReturn#1",
+      "sourceFile": "src/app/(app)/my-assets/page-client.tsx",
+      "sourceLine": 88,
+      "directContracts": [
+        "service:requestMyAssetReturn (@/lib/employee-self-service)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/my-requests/page-client.tsx::submit#1",
+      "sourceFile": "src/app/(app)/my-requests/page-client.tsx",
+      "sourceLine": 82,
+      "directContracts": [
+        "service:createMyEmployeeRequest (@/lib/employee-self-service)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/my-tasks/page-client.tsx::load#1",
+      "sourceFile": "src/app/(app)/my-tasks/page-client.tsx",
+      "sourceLine": 69,
+      "directContracts": [
+        "service:listMyEmployeeAssets (@/lib/employee-self-service)",
+        "service:listMyEmployeeRequests (@/lib/employee-self-service)",
+        "service:listMyEmployeeReturnRequests (@/lib/employee-self-service)",
+        "service:listRequests (@/lib/requests)",
+        "service:listWarehouseEmployeeReturnQueue (@/lib/employee-self-service)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/purchase-requests/page.tsx::loadItems#1",
+      "sourceFile": "src/app/(app)/purchase-requests/page.tsx",
+      "sourceLine": 77,
+      "directContracts": [
+        "service:getPurchaseRequestItems (@/lib/purchase-requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/purchase-requests/page.tsx::load#1",
+      "sourceFile": "src/app/(app)/purchase-requests/page.tsx",
+      "sourceLine": 87,
+      "directContracts": [
+        "service:beginOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:completeOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:listPurchaseRequestsPage (@/lib/purchase-requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/purchase-requests/page.tsx::toggleOpen#1",
+      "sourceFile": "src/app/(app)/purchase-requests/page.tsx",
+      "sourceLine": 114,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/purchase-requests/page.tsx::changeStatus#1",
+      "sourceFile": "src/app/(app)/purchase-requests/page.tsx",
+      "sourceLine": 129,
+      "directContracts": [
+        "service:setPurchaseRequestStatus (@/lib/purchase-requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/purchase-requests/page.tsx::receive#1",
+      "sourceFile": "src/app/(app)/purchase-requests/page.tsx",
+      "sourceLine": 135,
+      "directContracts": [
+        "service:receivePurchaseRequestItem (@/lib/purchase-requests)",
+        "service:validateReceiptQuantity (@/lib/purchase-receiving)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/purchase-requests/page.tsx::exportPr#1",
+      "sourceFile": "src/app/(app)/purchase-requests/page.tsx",
+      "sourceLine": 161,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/reports/page-client.tsx::exportCategory#1",
+      "sourceFile": "src/app/(app)/reports/page-client.tsx",
+      "sourceLine": 396,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/reports/page-client.tsx::exportRequests#1",
+      "sourceFile": "src/app/(app)/reports/page-client.tsx",
+      "sourceLine": 407,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/reports/page-client.tsx::exportAlerts#1",
+      "sourceFile": "src/app/(app)/reports/page-client.tsx",
+      "sourceLine": 418,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": false,
+      "demoEvidence": "not-run",
+      "notApplicableReason": "Not mounted: alerts is outside REPORT_TAB_KEYS."
+    },
+    {
+      "key": "src/app/(app)/reports/page-client.tsx::exportInventory#1",
+      "sourceFile": "src/app/(app)/reports/page-client.tsx",
+      "sourceLine": 426,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/reports/page-client.tsx::exportMaintenance#1",
+      "sourceFile": "src/app/(app)/reports/page-client.tsx",
+      "sourceLine": 441,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)",
+        "service:formatDate (@/lib/format)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/reports/page-client.tsx::exportCustody#1",
+      "sourceFile": "src/app/(app)/reports/page-client.tsx",
+      "sourceLine": 453,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/reports/page-client.tsx::exportActivity#1",
+      "sourceFile": "src/app/(app)/reports/page-client.tsx",
+      "sourceLine": 462,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)",
+        "service:formatDateTime (@/lib/format)"
+      ],
+      "mounted": false,
+      "demoEvidence": "not-run",
+      "notApplicableReason": "Not mounted: activity is outside REPORT_TAB_KEYS."
+    },
+    {
+      "key": "src/app/(app)/reports/page-client.tsx::exportExecutive#1",
+      "sourceFile": "src/app/(app)/reports/page-client.tsx",
+      "sourceLine": 471,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/requests/[id]/page.tsx::load#1",
+      "sourceFile": "src/app/(app)/requests/[id]/page.tsx",
+      "sourceLine": 112,
+      "directContracts": [
+        "service:getDeliveryRequirements (@/lib/requests)",
+        "service:getRequest (@/lib/requests)",
+        "service:getRequestAssetAllocations (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/requests/[id]/page.tsx::run#1",
+      "sourceFile": "src/app/(app)/requests/[id]/page.tsx",
+      "sourceLine": 145,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/requests/[id]/page.tsx::submitInspect#1",
+      "sourceFile": "src/app/(app)/requests/[id]/page.tsx",
+      "sourceLine": 180,
+      "directContracts": [
+        "service:inspectReturnRequest (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/requests/[id]/page.tsx::submitDelivery#1",
+      "sourceFile": "src/app/(app)/requests/[id]/page.tsx",
+      "sourceLine": 210,
+      "directContracts": [
+        "service:deliverRequest (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/requests/[id]/page.tsx::submitReservedChange#1",
+      "sourceFile": "src/app/(app)/requests/[id]/page.tsx",
+      "sourceLine": 338,
+      "directContracts": [
+        "service:changeReservedAsset (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/requests/[id]/page.tsx::submitReject#1",
+      "sourceFile": "src/app/(app)/requests/[id]/page.tsx",
+      "sourceLine": 393,
+      "directContracts": [
+        "service:rejectRequest (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/requests/new/page.tsx::submit#1",
+      "sourceFile": "src/app/(app)/requests/new/page.tsx",
+      "sourceLine": 207,
+      "directContracts": [
+        "service:createEmployeeRequest (@/lib/requests)",
+        "service:createRequest (@/lib/requests)",
+        "service:isSupportedRequestDate (@/lib/request-date-validation)",
+        "service:legacyRequestTypeForInsert (@/lib/request-compat)",
+        "service:requestHasItems (@/lib/request-options)",
+        "service:riyadhTodayISO (@/lib/request-date-validation)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/requests/page-client.tsx::loadPage#1",
+      "sourceFile": "src/app/(app)/requests/page-client.tsx",
+      "sourceLine": 127,
+      "directContracts": [
+        "service:beginOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:completeOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:isRequestStageKey (@/lib/request-stages)",
+        "service:listRequestsPage (@/lib/requests)",
+        "service:resolveUserLabels (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/requests/page-client.tsx::exportCsv#1",
+      "sourceFile": "src/app/(app)/requests/page-client.tsx",
+      "sourceLine": 295,
+      "directContracts": [
+        "service:collectCursorPages (@/lib/pagination)",
+        "service:downloadCSV (@/lib/export)",
+        "service:isRequestStageKey (@/lib/request-stages)",
+        "service:listRequestsPage (@/lib/requests)",
+        "service:simplifiedRequestStatus (@/lib/request-fulfillment)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/settings/page.tsx::onSectionKeyDown#1",
+      "sourceFile": "src/app/(app)/settings/page.tsx",
+      "sourceLine": 68,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/stocktakes/page.tsx::run#1",
+      "sourceFile": "src/app/(app)/stocktakes/page.tsx",
+      "sourceLine": 131,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(app)/stocktakes/page.tsx::exportRows#1",
+      "sourceFile": "src/app/(app)/stocktakes/page.tsx",
+      "sourceLine": 265,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(portal)/client-portal/layout.tsx::signOut#1",
+      "sourceFile": "src/app/(portal)/client-portal/layout.tsx",
+      "sourceLine": 49,
+      "directContracts": [
+        "service:createClient (@/lib/supabase/client)",
+        "service:secureSignOut (@/lib/auth-security)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/(portal)/client-portal/profile/page-client.tsx::save#1",
+      "sourceFile": "src/app/(portal)/client-portal/profile/page-client.tsx",
+      "sourceLine": 65,
+      "directContracts": [
+        "service:portalUpdateProfile (@/lib/portal)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/app/pending-approval/page.tsx::signOut#1",
+      "sourceFile": "src/app/pending-approval/page.tsx",
+      "sourceLine": 49,
+      "directContracts": [
+        "service:createClient (@/lib/supabase/client)",
+        "service:secureSignOut (@/lib/auth-security)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/app-topbar.tsx::submit#1",
+      "sourceFile": "src/components/app-topbar.tsx",
+      "sourceLine": 49,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/app-topbar.tsx::signOut#1",
+      "sourceFile": "src/components/app-topbar.tsx",
+      "sourceLine": 55,
+      "directContracts": [
+        "service:createClient (@/lib/supabase/client)",
+        "service:secureSignOut (@/lib/auth-security)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/assets/asset-detail-dialogs.tsx::submit#1",
+      "sourceFile": "src/components/assets/asset-detail-dialogs.tsx",
+      "sourceLine": 50,
+      "directContracts": [
+        "service:assignAsset (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/assets/asset-detail-dialogs.tsx::submit#2",
+      "sourceFile": "src/components/assets/asset-detail-dialogs.tsx",
+      "sourceLine": 73,
+      "directContracts": [
+        "service:returnAsset (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/assets/asset-detail-dialogs.tsx::submit#3",
+      "sourceFile": "src/components/assets/asset-detail-dialogs.tsx",
+      "sourceLine": 92,
+      "directContracts": [
+        "service:moveAsset (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/assets/asset-detail-dialogs.tsx::submit#4",
+      "sourceFile": "src/components/assets/asset-detail-dialogs.tsx",
+      "sourceLine": 160,
+      "directContracts": [
+        "service:addMaintenance (@/lib/queries)",
+        "service:uploadMaintenanceAttachment (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/assets/asset-detail-dialogs.tsx::submit#5",
+      "sourceFile": "src/components/assets/asset-detail-dialogs.tsx",
+      "sourceLine": 228,
+      "directContracts": [
+        "service:changeStatus (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/assets/asset-detail-dialogs.tsx::submit#6",
+      "sourceFile": "src/components/assets/asset-detail-dialogs.tsx",
+      "sourceLine": 305,
+      "directContracts": [
+        "service:buildSpecialAttributesForSave (@/lib/asset-type-templates)",
+        "service:parseStrictDecimal (@/lib/numeric-validation)",
+        "service:updateAsset (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/assets/asset-detail-sections.tsx::upload#1",
+      "sourceFile": "src/components/assets/asset-detail-sections.tsx",
+      "sourceLine": 215,
+      "directContracts": [
+        "service:uploadAssetAttachment (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/assets/asset-documents.tsx::upload#1",
+      "sourceFile": "src/components/assets/asset-documents.tsx",
+      "sourceLine": 81,
+      "directContracts": [
+        "service:uploadAssetAttachment (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/consumables/consumable-dialogs.tsx::submit#1",
+      "sourceFile": "src/components/consumables/consumable-dialogs.tsx",
+      "sourceLine": 59,
+      "directContracts": [
+        "service:parseStrictDecimal (@/lib/numeric-validation)",
+        "service:parseStrictInteger (@/lib/numeric-validation)",
+        "service:replenishConsumable (@/lib/queries)",
+        "service:uploadConsumableAttachment (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/consumables/consumable-dialogs.tsx::submit#2",
+      "sourceFile": "src/components/consumables/consumable-dialogs.tsx",
+      "sourceLine": 119,
+      "directContracts": [
+        "service:issueConsumable (@/lib/queries)",
+        "service:parseStrictInteger (@/lib/numeric-validation)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/consumables/consumable-dialogs.tsx::submit#3",
+      "sourceFile": "src/components/consumables/consumable-dialogs.tsx",
+      "sourceLine": 173,
+      "directContracts": [
+        "service:parseStrictInteger (@/lib/numeric-validation)",
+        "service:updateConsumable (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/consumables/consumable-new-form.tsx::submit#1",
+      "sourceFile": "src/components/consumables/consumable-new-form.tsx",
+      "sourceLine": 49,
+      "directContracts": [
+        "service:createConsumableFull (@/lib/queries)",
+        "service:parseStrictDecimal (@/lib/numeric-validation)",
+        "service:parseStrictInteger (@/lib/numeric-validation)",
+        "service:uploadConsumableAttachment (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/consumables/consumables-panel.tsx::load#1",
+      "sourceFile": "src/components/consumables/consumables-panel.tsx",
+      "sourceLine": 74,
+      "directContracts": [
+        "service:beginOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:completeOperationalListRequest (@/lib/operational-list-request-gate)",
+        "service:listConsumablesPage (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/consumables/consumables-panel.tsx::submit#1",
+      "sourceFile": "src/components/consumables/consumables-panel.tsx",
+      "sourceLine": 286,
+      "directContracts": [
+        "service:createConsumable (@/lib/queries)",
+        "service:parseStrictDecimal (@/lib/numeric-validation)",
+        "service:parseStrictInteger (@/lib/numeric-validation)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/consumables/prepare-purchase-request.tsx::submit#1",
+      "sourceFile": "src/components/consumables/prepare-purchase-request.tsx",
+      "sourceLine": 63,
+      "directContracts": [
+        "service:createPurchaseRequestsFromShortages (@/lib/purchase-requests)"
+      ],
+      "mounted": false,
+      "demoEvidence": "not-applicable",
+      "notApplicableReason": "Not mounted: PreparePurchaseRequestButton has no import or usage in source src."
+    },
+    {
+      "key": "src/components/maintenance-modal.tsx::submit#1",
+      "sourceFile": "src/components/maintenance-modal.tsx",
+      "sourceLine": 147,
+      "directContracts": [
+        "service:formatDate (@/lib/format)",
+        "service:updateMaintenance (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/maintenance-modal.tsx::uploadFile#1",
+      "sourceFile": "src/components/maintenance-modal.tsx",
+      "sourceLine": 211,
+      "directContracts": [
+        "service:friendlyErrorStrict (@/lib/user-facing-errors)",
+        "service:getMaintenanceExtras (@/lib/queries)",
+        "service:uploadMaintenanceAttachment (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/maintenance-modal.tsx::refreshExtras#1",
+      "sourceFile": "src/components/maintenance-modal.tsx",
+      "sourceLine": 225,
+      "directContracts": [
+        "service:getMaintenanceExtras (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/reports/customer-requests-tab.tsx::exportCsv#1",
+      "sourceFile": "src/components/reports/customer-requests-tab.tsx",
+      "sourceLine": 84,
+      "directContracts": [
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": false,
+      "demoEvidence": "not-run",
+      "notApplicableReason": "Not mounted: CustomerRequestsTab is not imported by reports."
+    },
+    {
+      "key": "src/components/requests/customers-manager.tsx::load#1",
+      "sourceFile": "src/components/requests/customers-manager.tsx",
+      "sourceLine": 36,
+      "directContracts": [
+        "service:listCustomers (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/requests/customers-manager.tsx::submit#1",
+      "sourceFile": "src/components/requests/customers-manager.tsx",
+      "sourceLine": 189,
+      "directContracts": [
+        "service:createCustomer (@/lib/requests)",
+        "service:updateCustomer (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/requests/customers-manager.tsx::load#2",
+      "sourceFile": "src/components/requests/customers-manager.tsx",
+      "sourceLine": 256,
+      "directContracts": [
+        "service:listPortalInvites (@/lib/requests)",
+        "service:listPortalUsers (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/requests/portal-settings-section.tsx::saveAll#1",
+      "sourceFile": "src/components/requests/portal-settings-section.tsx",
+      "sourceLine": 66,
+      "directContracts": [
+        "service:setCustomerAllowedCategories (@/lib/requests)",
+        "service:setCustomerAllowedCompanies (@/lib/requests)",
+        "service:updateCustomerPortalSettings (@/lib/requests)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/scan/scan-console.tsx::confirmSmartMove#1",
+      "sourceFile": "src/components/scan/scan-console.tsx",
+      "sourceLine": 197,
+      "directContracts": [
+        "service:logScan (@/lib/queries)",
+        "service:smartWarehouseScanMove (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/scan/scan-console.tsx::submitManual#1",
+      "sourceFile": "src/components/scan/scan-console.tsx",
+      "sourceLine": 290,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/scan/scan-history.tsx::exportCsv#1",
+      "sourceFile": "src/components/scan/scan-history.tsx",
+      "sourceLine": 78,
+      "directContracts": [
+        "service:dateKeyInTimeZone (@/lib/format)",
+        "service:downloadCSV (@/lib/export)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/asset-pools-settings.tsx::load#1",
+      "sourceFile": "src/components/settings/asset-pools-settings.tsx",
+      "sourceLine": 34,
+      "directContracts": [
+        "service:getFormOptions (@/lib/queries)",
+        "service:listPoolsAdmin (@/lib/queries)"
+      ],
+      "mounted": false,
+      "demoEvidence": "not-run",
+      "notApplicableReason": "Not mounted: ASSET_POOLS_UI_VISIBLE=false."
+    },
+    {
+      "key": "src/components/settings/asset-pools-settings.tsx::submit#1",
+      "sourceFile": "src/components/settings/asset-pools-settings.tsx",
+      "sourceLine": 148,
+      "directContracts": [
+        "service:createPool (@/lib/queries)",
+        "service:updatePool (@/lib/queries)"
+      ],
+      "mounted": false,
+      "demoEvidence": "not-run",
+      "notApplicableReason": "Not mounted: ASSET_POOLS_UI_VISIBLE=false."
+    },
+    {
+      "key": "src/components/settings/catalog-settings.tsx::load#1",
+      "sourceFile": "src/components/settings/catalog-settings.tsx",
+      "sourceLine": 73,
+      "directContracts": [
+        "service:listCategoriesAdmin (@/lib/queries)",
+        "service:listModelsAdmin (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/catalog-settings.tsx::submit#1",
+      "sourceFile": "src/components/settings/catalog-settings.tsx",
+      "sourceLine": 179,
+      "directContracts": [
+        "service:createCategory (@/lib/queries)",
+        "service:friendlyErrorStrict (@/lib/user-facing-errors)",
+        "service:updateCategory (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/catalog-settings.tsx::load#2",
+      "sourceFile": "src/components/settings/catalog-settings.tsx",
+      "sourceLine": 239,
+      "directContracts": [
+        "service:listCategoriesAdmin (@/lib/queries)",
+        "service:listCompaniesAdmin (@/lib/queries)",
+        "service:listModelsAdmin (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/catalog-settings.tsx::submit#2",
+      "sourceFile": "src/components/settings/catalog-settings.tsx",
+      "sourceLine": 358,
+      "directContracts": [
+        "service:createCatalogModel (@/lib/queries)",
+        "service:updateCatalogModel (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/companies-settings.tsx::load#1",
+      "sourceFile": "src/components/settings/companies-settings.tsx",
+      "sourceLine": 28,
+      "directContracts": [
+        "service:listCompaniesAdmin (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/companies-settings.tsx::submit#1",
+      "sourceFile": "src/components/settings/companies-settings.tsx",
+      "sourceLine": 122,
+      "directContracts": [
+        "service:createCompany (@/lib/queries)",
+        "service:updateCompany (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/depreciation-settings.tsx::load#1",
+      "sourceFile": "src/components/settings/depreciation-settings.tsx",
+      "sourceLine": 36,
+      "directContracts": [
+        "service:listDepreciationRules (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/depreciation-settings.tsx::submit#1",
+      "sourceFile": "src/components/settings/depreciation-settings.tsx",
+      "sourceLine": 185,
+      "directContracts": [
+        "service:createDepreciationRule (@/lib/queries)",
+        "service:parseStrictDecimal (@/lib/numeric-validation)",
+        "service:parseStrictInteger (@/lib/numeric-validation)",
+        "service:updateDepreciationRule (@/lib/queries)"
+      ],
+      "mounted": false,
+      "demoEvidence": "not-applicable",
+      "notApplicableReason": "Source-gated: listDepreciationRules always returns lifecycleAvailable:false; Add/Edit controls are unavailable. The read-only load has separate UI proof."
+    },
+    {
+      "key": "src/components/settings/email-automation-settings.tsx::save#1",
+      "sourceFile": "src/components/settings/email-automation-settings.tsx",
+      "sourceLine": 44,
+      "directContracts": [
+        "service:updateEmailAutomationSettings (@/lib/email-automation)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/email-automation-settings.tsx::act#1",
+      "sourceFile": "src/components/settings/email-automation-settings.tsx",
+      "sourceLine": 52,
+      "directContracts": [
+        "service:emailDeliveryAction (@/lib/email-automation)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/email-automation-settings.tsx::sendStagingTest#1",
+      "sourceFile": "src/components/settings/email-automation-settings.tsx",
+      "sourceLine": 57,
+      "directContracts": [
+        "service:enqueueStagingTestEmail (@/lib/email-automation)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/feature-rollout-settings.tsx::save#1",
+      "sourceFile": "src/components/settings/feature-rollout-settings.tsx",
+      "sourceLine": 58,
+      "directContracts": [
+        "service:updateFeatureExposureSettings (@/lib/feature-exposure-settings)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/inventory-settings.tsx::save#1",
+      "sourceFile": "src/components/settings/inventory-settings.tsx",
+      "sourceLine": 45,
+      "directContracts": [
+        "service:updateInventorySettings (@/lib/inventory-settings)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/notification-settings.tsx::save#1",
+      "sourceFile": "src/components/settings/notification-settings.tsx",
+      "sourceLine": 42,
+      "directContracts": [
+        "service:updateNotificationSettings (@/lib/notifications)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/permissions-settings.tsx::loadMatrix#1",
+      "sourceFile": "src/components/settings/permissions-settings.tsx",
+      "sourceLine": 34,
+      "directContracts": [
+        "service:getRoleCapabilityMatrix (@/lib/queries)",
+        "service:listPermissions (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/permissions-settings.tsx::toggleRole#1",
+      "sourceFile": "src/components/settings/permissions-settings.tsx",
+      "sourceLine": 51,
+      "directContracts": [
+        "service:setRoleCapability (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/permissions-settings.tsx::loadOverrides#1",
+      "sourceFile": "src/components/settings/permissions-settings.tsx",
+      "sourceLine": 153,
+      "directContracts": [
+        "service:getUserCapabilityOverrides (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/registration-settings.tsx::loadSettings#1",
+      "sourceFile": "src/components/settings/registration-settings.tsx",
+      "sourceLine": 50,
+      "directContracts": [
+        "service:getRegistrationSettings (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/registration-settings.tsx::saveSettings#1",
+      "sourceFile": "src/components/settings/registration-settings.tsx",
+      "sourceLine": 55,
+      "directContracts": [
+        "service:updateRegistrationSettings (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/registration-settings.tsx::loadRequests#1",
+      "sourceFile": "src/components/settings/registration-settings.tsx",
+      "sourceLine": 76,
+      "directContracts": [
+        "service:listRegistrationRequests (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/registration-settings.tsx::submit#1",
+      "sourceFile": "src/components/settings/registration-settings.tsx",
+      "sourceLine": 238,
+      "directContracts": [
+        "service:approveEmployeeUser (@/lib/queries)",
+        "service:approveUser (@/lib/queries)",
+        "service:userMgmtError (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/registration-settings.tsx::submit#2",
+      "sourceFile": "src/components/settings/registration-settings.tsx",
+      "sourceLine": 269,
+      "directContracts": [
+        "service:rejectUser (@/lib/queries)",
+        "service:userMgmtError (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/suppliers-settings.tsx::load#1",
+      "sourceFile": "src/components/settings/suppliers-settings.tsx",
+      "sourceLine": 35,
+      "directContracts": [
+        "service:friendlyErrorStrict (@/lib/user-facing-errors)",
+        "service:listSuppliersAdmin (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/suppliers-settings.tsx::submit#1",
+      "sourceFile": "src/components/settings/suppliers-settings.tsx",
+      "sourceLine": 166,
+      "directContracts": [
+        "service:createSupplierFull (@/lib/queries)",
+        "service:friendlyErrorStrict (@/lib/user-facing-errors)",
+        "service:updateSupplierFull (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/users-settings.tsx::load#1",
+      "sourceFile": "src/components/settings/users-settings.tsx",
+      "sourceLine": 63,
+      "directContracts": [
+        "service:listRegistrationRequests (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/users-settings.tsx::submit#1",
+      "sourceFile": "src/components/settings/users-settings.tsx",
+      "sourceLine": 254,
+      "directContracts": [
+        "service:approveEmployeeUser (@/lib/queries)",
+        "service:approveUser (@/lib/queries)",
+        "service:userMgmtError (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/settings/users-settings.tsx::submit#2",
+      "sourceFile": "src/components/settings/users-settings.tsx",
+      "sourceLine": 282,
+      "directContracts": [
+        "service:rejectUser (@/lib/queries)",
+        "service:userMgmtError (@/lib/queries)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/sidebar.tsx::signOut#1",
+      "sourceFile": "src/components/sidebar.tsx",
+      "sourceLine": 102,
+      "directContracts": [
+        "service:createClient (@/lib/supabase/client)",
+        "service:secureSignOut (@/lib/auth-security)"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/ui/creatable-select.tsx::handleChange#1",
+      "sourceFile": "src/components/ui/creatable-select.tsx",
+      "sourceLine": 47,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    },
+    {
+      "key": "src/components/ui/creatable-select.tsx::submit#1",
+      "sourceFile": "src/components/ui/creatable-select.tsx",
+      "sourceLine": 52,
+      "directContracts": [
+        "لا عقد خارجي مباشر؛ راجع الجسم"
+      ],
+      "mounted": true,
+      "demoEvidence": "not-run",
+      "notApplicableReason": null
+    }
+  ],
+  "literalRpcNames": [
+    "action_alert_operational_counts",
+    "action_alerts_sync",
+    "app_schema_compatibility",
+    "app_user_role",
+    "approve_employee_user",
+    "approve_user",
+    "asset_create_atomic",
+    "assets_financial",
+    "auth_security_state",
+    "automation_delivery_action",
+    "automation_delivery_overview",
+    "automation_delivery_recent",
+    "automation_email_enqueue_staging_test",
+    "automation_email_settings_get",
+    "automation_email_settings_update",
+    "consumable_create_with_opening_stock",
+    "create_customer_portal_invite",
+    "customer_save_atomic",
+    "customer_set_active",
+    "dashboard_operational_summary",
+    "employee_my_assets",
+    "employee_my_request",
+    "employee_my_requests",
+    "employee_my_return_requests",
+    "employee_reply_request_clarification",
+    "employee_report_asset_issue",
+    "employee_request_asset_return",
+    "financial_data_quality_list",
+    "financial_data_quality_summary",
+    "get_customer_portal_settings",
+    "get_customer_request_analytics",
+    "get_customer_request_operational_report",
+    "get_customer_request_timeseries",
+    "import_inventory",
+    "is_financial_viewer",
+    "list_customer_portal_invites",
+    "list_customer_portal_users",
+    "list_registration_requests",
+    "maintenance_create_atomic",
+    "maintenance_operational_summary",
+    "my_capabilities",
+    "portal_create_request",
+    "portal_create_request_atomic",
+    "portal_get_context",
+    "portal_get_profile",
+    "portal_get_request",
+    "portal_get_request_attachment_path",
+    "portal_get_request_dashboard",
+    "portal_item_availability",
+    "portal_list_allowed_categories",
+    "portal_list_allowed_companies",
+    "portal_list_catalog",
+    "portal_list_consumables",
+    "portal_list_request_attachments",
+    "portal_list_requests",
+    "portal_register_request_attachment",
+    "portal_submit_request",
+    "portal_update_profile",
+    "procurement_record_external_document",
+    "public_asset_by_token",
+    "purchase_request_items_financial",
+    "purchase_request_procurement_state",
+    "purchase_requests_create_from_shortages",
+    "record_auth_security_event",
+    "registration_invite_create_atomic",
+    "registration_invite_set_active",
+    "registration_invite_update_atomic",
+    "registration_settings_update_atomic",
+    "registration_status",
+    "reject_user",
+    "request_allocate_asset",
+    "request_asset_allocation_summary",
+    "request_create_employee_self",
+    "request_create_idempotent",
+    "request_delivery_requirements",
+    "request_filter_options",
+    "request_items_financial",
+    "request_operation_result_lookup",
+    "request_operational_counts",
+    "reset_user_pending",
+    "scan_warehouse_exit",
+    "scan_warehouse_move",
+    "set_role_capability",
+    "set_user_capability",
+    "stocktake_apply_adjustments",
+    "stocktake_create",
+    "stocktake_decide_item",
+    "stocktake_detail",
+    "stocktake_list",
+    "stocktake_recount_item",
+    "stocktake_review",
+    "stocktake_scan",
+    "stocktake_set_variance_reason",
+    "stocktake_start",
+    "stocktake_submit",
+    "stocktake_system_inventory_report",
+    "supplier_save_atomic",
+    "supplier_set_active",
+    "user_label",
+    "user_labels",
+    "validate_portal_invite",
+    "validate_registration_invite",
+    "warehouse_employee_return_queue",
+    "warehouse_receive_employee_return"
+  ],
+  "indirectRpcNames": [
+    "action_alert_assign",
+    "action_alert_note",
+    "action_alert_start",
+    "approve_customer",
+    "asset_assign",
+    "asset_change_status",
+    "asset_move_atomic",
+    "asset_return",
+    "asset_set_serial",
+    "asset_set_serial_exempt",
+    "asset_update_atomic",
+    "assets_financial",
+    "consumable_stock_move_idempotent",
+    "consumable_txn_financial_detail",
+    "consumable_update_atomic",
+    "consumables_financial",
+    "depreciation_financial",
+    "depreciation_rule_save_atomic",
+    "depreciation_rule_set_active",
+    "maintenance_add_time_entry",
+    "maintenance_assign_technician",
+    "maintenance_confirm_handoff",
+    "maintenance_financial_truth",
+    "maintenance_plan_part",
+    "maintenance_update_safe",
+    "portal_add_item",
+    "portal_pm_approve_request",
+    "portal_pm_reject_request",
+    "portal_remove_item",
+    "portal_reply_clarification",
+    "purchase_request_item_receive_idempotent",
+    "purchase_request_set_status",
+    "request_auto_provision",
+    "request_change_reserved_asset",
+    "request_deliver_with_proof",
+    "request_execute_idempotent",
+    "request_item_convert_to_pr",
+    "request_item_fulfill",
+    "request_item_unfulfill",
+    "request_request_clarification",
+    "request_secondary_approve",
+    "request_set_responsible",
+    "request_shortage_fulfill_available",
+    "revoke_customer_portal_invite",
+    "set_customer_allowed_categories",
+    "set_customer_allowed_companies",
+    "set_customer_portal_user_active",
+    "staff_register_request_attachment_v2",
+    "staff_set_request_attachment_visibility",
+    "update_customer_portal_settings"
+  ],
+  "rpcNames": [
+    "action_alert_assign",
+    "action_alert_note",
+    "action_alert_operational_counts",
+    "action_alert_start",
+    "action_alerts_sync",
+    "app_schema_compatibility",
+    "app_user_role",
+    "approve_customer",
+    "approve_employee_user",
+    "approve_user",
+    "asset_assign",
+    "asset_change_status",
+    "asset_create_atomic",
+    "asset_move_atomic",
+    "asset_return",
+    "asset_set_serial",
+    "asset_set_serial_exempt",
+    "asset_update_atomic",
+    "assets_financial",
+    "auth_security_state",
+    "automation_delivery_action",
+    "automation_delivery_overview",
+    "automation_delivery_recent",
+    "automation_email_enqueue_staging_test",
+    "automation_email_settings_get",
+    "automation_email_settings_update",
+    "consumable_create_with_opening_stock",
+    "consumable_stock_move_idempotent",
+    "consumable_txn_financial_detail",
+    "consumable_update_atomic",
+    "consumables_financial",
+    "create_customer_portal_invite",
+    "customer_save_atomic",
+    "customer_set_active",
+    "dashboard_operational_summary",
+    "depreciation_financial",
+    "depreciation_rule_save_atomic",
+    "depreciation_rule_set_active",
+    "employee_my_assets",
+    "employee_my_request",
+    "employee_my_requests",
+    "employee_my_return_requests",
+    "employee_reply_request_clarification",
+    "employee_report_asset_issue",
+    "employee_request_asset_return",
+    "financial_data_quality_list",
+    "financial_data_quality_summary",
+    "get_customer_portal_settings",
+    "get_customer_request_analytics",
+    "get_customer_request_operational_report",
+    "get_customer_request_timeseries",
+    "import_inventory",
+    "is_financial_viewer",
+    "list_customer_portal_invites",
+    "list_customer_portal_users",
+    "list_registration_requests",
+    "maintenance_add_time_entry",
+    "maintenance_assign_technician",
+    "maintenance_confirm_handoff",
+    "maintenance_create_atomic",
+    "maintenance_financial_truth",
+    "maintenance_operational_summary",
+    "maintenance_plan_part",
+    "maintenance_update_safe",
+    "my_capabilities",
+    "portal_add_item",
+    "portal_create_request",
+    "portal_create_request_atomic",
+    "portal_get_context",
+    "portal_get_profile",
+    "portal_get_request",
+    "portal_get_request_attachment_path",
+    "portal_get_request_dashboard",
+    "portal_item_availability",
+    "portal_list_allowed_categories",
+    "portal_list_allowed_companies",
+    "portal_list_catalog",
+    "portal_list_consumables",
+    "portal_list_request_attachments",
+    "portal_list_requests",
+    "portal_pm_approve_request",
+    "portal_pm_reject_request",
+    "portal_register_request_attachment",
+    "portal_remove_item",
+    "portal_reply_clarification",
+    "portal_submit_request",
+    "portal_update_profile",
+    "procurement_record_external_document",
+    "public_asset_by_token",
+    "purchase_request_item_receive_idempotent",
+    "purchase_request_items_financial",
+    "purchase_request_procurement_state",
+    "purchase_request_set_status",
+    "purchase_requests_create_from_shortages",
+    "record_auth_security_event",
+    "registration_invite_create_atomic",
+    "registration_invite_set_active",
+    "registration_invite_update_atomic",
+    "registration_settings_update_atomic",
+    "registration_status",
+    "reject_user",
+    "request_allocate_asset",
+    "request_asset_allocation_summary",
+    "request_auto_provision",
+    "request_change_reserved_asset",
+    "request_create_employee_self",
+    "request_create_idempotent",
+    "request_deliver_with_proof",
+    "request_delivery_requirements",
+    "request_execute_idempotent",
+    "request_filter_options",
+    "request_item_convert_to_pr",
+    "request_item_fulfill",
+    "request_item_unfulfill",
+    "request_items_financial",
+    "request_operation_result_lookup",
+    "request_operational_counts",
+    "request_request_clarification",
+    "request_secondary_approve",
+    "request_set_responsible",
+    "request_shortage_fulfill_available",
+    "reset_user_pending",
+    "revoke_customer_portal_invite",
+    "scan_warehouse_exit",
+    "scan_warehouse_move",
+    "set_customer_allowed_categories",
+    "set_customer_allowed_companies",
+    "set_customer_portal_user_active",
+    "set_role_capability",
+    "set_user_capability",
+    "staff_register_request_attachment_v2",
+    "staff_set_request_attachment_visibility",
+    "stocktake_apply_adjustments",
+    "stocktake_create",
+    "stocktake_decide_item",
+    "stocktake_detail",
+    "stocktake_list",
+    "stocktake_recount_item",
+    "stocktake_review",
+    "stocktake_scan",
+    "stocktake_set_variance_reason",
+    "stocktake_start",
+    "stocktake_submit",
+    "stocktake_system_inventory_report",
+    "supplier_save_atomic",
+    "supplier_set_active",
+    "update_customer_portal_settings",
+    "user_label",
+    "user_labels",
+    "validate_portal_invite",
+    "validate_registration_invite",
+    "warehouse_employee_return_queue",
+    "warehouse_receive_employee_return"
+  ],
+  "requestIdempotentOperations": [
+    "approve",
+    "cancel",
+    "complete",
+    "confirm_ready",
+    "inspect_return",
+    "mark_ready",
+    "reject",
+    "return",
+    "start_preparing",
+    "submit"
+  ],
+  "tabs": {
+    "reports": [
+      "executive",
+      "requests",
+      "inventory",
+      "maintenance",
+      "custody"
+    ],
+    "settings": [
+      "general",
+      "featureRollout",
+      "permissions",
+      "users",
+      "registration",
+      "suppliers",
+      "companies",
+      "inventory",
+      "depreciation",
+      "notifications"
+    ],
+    "assetDetail": [
+      "overview",
+      "custody",
+      "maintenance",
+      "documents",
+      "financial"
+    ],
+    "consumableDetail": [
+      "stock",
+      "replenishment",
+      "usage"
+    ],
+    "requestDetail": [
+      "items",
+      "delivery",
+      "attachments",
+      "history"
+    ]
+  }
+}

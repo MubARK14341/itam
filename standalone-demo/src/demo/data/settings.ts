@@ -1,0 +1,97 @@
+import { type Row,type DemoState,type OperationContext,DemoError,object,str,num,rows,find,uid,now,manager,operator,portal,staff,financial,requireActor,addEvent,idempotent } from "./types";
+import type { RpcDefinition,RpcHandler } from "./operations";
+import { portalAttachmentWriteRequest, validateDemoAttachmentBlob } from "./attachments";
+import { resolveDemoPortalSettings } from "./portal-settings";
+export const settingsRpcs:Record<string,RpcDefinition>={};
+const define=(names:string[],handle:RpcHandler,write=true)=>names.forEach(name=>settingsRpcs[name]={write,handle:(s,c,p)=>write?idempotent(s,c,p.p_operation_id,name,p,()=>handle(s,c,p)):handle(s,c,p)});
+function save(s:DemoState,table:string,id:unknown,input:Row):Row{if(id){const row=find(s,table,id);Object.assign(row,input,{updated_at:now()});return row;}const row={id:uid(),is_active:true,created_at:now(),updated_at:now(),...input};rows(s,table).push(row);return row;}
+define(["customer_save_atomic"],(s,c,p)=>{manager(c);const input=object(p.p_input);if(!str(input.name).trim())throw new DemoError("22023","name_required");return{ok:true,id:save(s,"customers",p.p_customer_id,{approval_status:"approved",...input}).id};});
+define(["customer_set_active"],(s,c,p)=>{manager(c);find(s,"customers",p.p_customer_id).is_active=p.p_is_active===true;return{ok:true};});
+define(["supplier_save_atomic"],(s,c,p)=>{manager(c);const input={...object(p.p_input)};if(!str(input.name).trim())throw new DemoError("22023","name_required");const categories=input.category_ids;delete input.category_ids;const supplier=save(s,"suppliers",p.p_supplier_id,input);if(Array.isArray(categories)){for(const id of categories)find(s,"categories",id);s.tables.supplier_categories=rows(s,"supplier_categories").filter(x=>x.supplier_id!==supplier.id);rows(s,"supplier_categories").push(...categories.map(category_id=>({supplier_id:supplier.id,category_id})));}return{ok:true,id:supplier.id};});
+define(["supplier_set_active"],(s,c,p)=>{manager(c);find(s,"suppliers",p.p_supplier_id).is_active=p.p_is_active===true;return{ok:true};});
+define(["depreciation_rule_save_atomic"],(s,c,p)=>{manager(c);const input=object(p.p_input);if(num(input.annual_rate)<0||num(input.annual_rate)>100||num(input.salvage_rate)<0||num(input.salvage_rate)>100)throw new DemoError("22023","invalid_rate");return{ok:true,id:save(s,"depreciation_rules",p.p_rule_id,input).id};});
+define(["depreciation_rule_set_active"],(s,c,p)=>{manager(c);find(s,"depreciation_rules",p.p_rule_id).is_active=p.p_is_active===true;return{ok:true};});
+define(["registration_settings_update_atomic"],(s,c,p)=>{manager(c);const input=object(p.p_input);if(!["closed","open_with_approval","gradual","invite_only"].includes(str(input.mode)))throw new DemoError("22023","invalid_mode");Object.assign(rows(s,"registration_settings")[0],input);return{ok:true};});
+define(["registration_invite_create_atomic","registration_invite_update_atomic"],(s,c,p)=>{manager(c);const input=object(p.p_input);if(input.default_role_key==="admin"||input.default_role==="admin")throw new DemoError("42501","cannot_grant_admin",403);if(num(input.max_uses,1)<1)throw new DemoError("22023","invalid_max_uses");const invite=save(s,"registration_invites",p.p_invite_id,{code:uid().slice(0,8).toUpperCase(),used_count:0,expires_at:new Date(Date.now()+30*86400000).toISOString(),...input});return{ok:true,id:invite.id,code:invite.code};});
+define(["registration_invite_set_active"],(s,c,p)=>{manager(c);find(s,"registration_invites",p.p_invite_id).is_active=p.p_is_active===true;return{ok:true};});
+define(["approve_user","approve_employee_user","reject_user","reset_user_pending"],(s,c,p)=>{const actor=manager(c);const user=find(s,"app_users",p.p_user_id);if(user.id===actor.userId)throw new DemoError("42501","cannot_manage_self",403);if(user.role_key==="admin"&&actor.role!=="admin")throw new DemoError("42501","cannot_manage_admin",403);if(p.p_role_key==="admin")throw new DemoError("42501","cannot_grant_admin",403);if(p.p_employee_id){const employee=find(s,"employees",p.p_employee_id);if(!employee.is_active)throw new DemoError("P0001","employee_inactive");if(rows(s,"app_users").some(u=>u.id!==user.id&&u.employee_id===employee.id))throw new DemoError("P0001","employee_already_linked");Object.assign(user,{employee_id:employee.id,role:"employee",role_key:"employee",approval_status:"approved",is_active:true});}else if(p.p_role_key){if(!["it_manager","employee","warehouse_manager","viewer"].includes(str(p.p_role_key)))throw new DemoError("22023","invalid_role");Object.assign(user,{role:p.p_role_key,role_key:p.p_role_key,approval_status:"approved",is_active:true});}else if(Object.hasOwn(p,"p_reason"))Object.assign(user,{approval_status:"rejected",rejection_reason:p.p_reason??null,is_active:false});else Object.assign(user,{approval_status:"pending",rejection_reason:null,is_active:true});s.generation++;return{ok:true};});
+define(["set_role_capability"],(s,c,p)=>{
+  if(requireActor(c).role!=="admin")return{ok:false,error:"not_authorized"};
+  if(!["admin","it_manager","technician","warehouse_manager","employee","viewer","auditor"].includes(str(p.p_role_key))||!rows(s,"permissions").some(r=>r.key===p.p_key))return{ok:false,error:"not_found"};
+  s.tables.role_permissions=rows(s,"role_permissions").filter(r=>!(r.role_key===p.p_role_key&&r.permission_key===p.p_key));
+  if(p.p_allowed===true)rows(s,"role_permissions").push({role_key:p.p_role_key,permission_key:p.p_key,allowed:true});
+  s.generation++;return{ok:true};
+});
+define(["set_user_capability"],(s,c,p)=>{
+  const actor=requireActor(c);if(actor.role!=="admin")return{ok:false,error:"not_authorized"};
+  if(p.p_user===actor.userId)return{ok:false,error:"cannot_modify_self"};
+  if(!["allow","deny","inherit"].includes(str(p.p_state)))return{ok:false,error:"invalid_state"};
+  const user=find(s,"app_users",p.p_user);if(user.role_key==="admin")return{ok:false,error:"cannot_modify_admin"};
+  if(!rows(s,"permissions").some(r=>r.key===p.p_key))return{ok:false,error:"not_found"};
+  s.tables.user_permissions=rows(s,"user_permissions").filter(r=>!(r.user_id===p.p_user&&r.permission_key===p.p_key));
+  if(p.p_state!=="inherit")rows(s,"user_permissions").push({user_id:p.p_user,permission_key:p.p_key,allow:p.p_state==="allow"});
+  s.generation++;return{ok:true};
+});
+define(["approve_customer"],(s,c,p)=>{manager(c);const customer=find(s,"customers",p.p_customer_id);Object.assign(customer,{approval_status:p.p_approve?"approved":"rejected",is_active:p.p_approve===true});return{ok:true};});
+define(["create_customer_portal_invite"],(s,c,p)=>{manager(c);find(s,"customers",p.p_customer_id);if(!["project_manager","authorized_requester","viewer"].includes(str(p.p_portal_role)))throw new DemoError("22023","invalid_portal_role");const invite=save(s,"customer_portal_invites",null,{customer_id:p.p_customer_id,portal_role:p.p_portal_role,code:uid().slice(0,8).toUpperCase(),expires_at:p.p_expires_at??new Date(Date.now()+30*86400000).toISOString(),max_uses:p.p_max_uses??10,used_count:0});return{ok:true,id:invite.id,code:invite.code};});
+define(["revoke_customer_portal_invite"],(s,c,p)=>{manager(c);find(s,"customer_portal_invites",p.p_invite_id).is_active=false;return{ok:true};});
+define(["set_customer_portal_user_active"],(s,c,p)=>{manager(c);find(s,"customer_portal_users",p.p_user_id).is_active=p.p_active===true;return{ok:true};});
+define(["portal_update_profile"],(s,c,p)=>{const actor=portal(c);const contact=str(p.p_contact_name).trim(),phone=str(p.p_phone).trim();if(!contact)throw new DemoError("22023","contact_name_required");if(!phone)throw new DemoError("22023","phone_required");const profile=find(s,"customer_portal_users",actor.userId);Object.assign(profile,{contact_name:contact,phone,updated_at:now()});if(actor.portalRole==="project_manager"&&str(p.p_city).trim())Object.assign(find(s,"customers",actor.customerId),{city:str(p.p_city).trim(),updated_at:now()});return{ok:true};});
+define(["update_customer_portal_settings"],(s,c,p)=>{manager(c);find(s,"customers",p.p_customer_id);const fields:Record<string,string>={p_portal_enabled:"portal_enabled",p_allow_rental:"allow_rental_requests",p_allow_purchase:"allow_purchase_requests",p_allow_maintenance:"allow_maintenance_requests",p_allow_custom:"allow_custom_requests",p_allow_custom_item:"allow_custom_item_requests",p_allow_attachments:"allow_attachments",p_require_pm:"require_project_manager_approval"};let config=rows(s,"customer_portal_settings").find(x=>x.customer_id===p.p_customer_id);if(!config){config=resolveDemoPortalSettings(s,p.p_customer_id);rows(s,"customer_portal_settings").push(config);}for(const[from,to]of Object.entries(fields))if(Object.hasOwn(p,from))config[to]=p[from]===true;return{ok:true};});
+define(["set_customer_allowed_companies"],(s,c,p)=>{manager(c);find(s,"customers",p.p_customer_id);if(!Array.isArray(p.p_company_ids))throw new DemoError("22023","invalid_companies");for(const id of p.p_company_ids)find(s,"companies",id);s.tables.customer_allowed_companies=rows(s,"customer_allowed_companies").filter(x=>x.customer_id!==p.p_customer_id);rows(s,"customer_allowed_companies").push(...p.p_company_ids.map(company_id=>({customer_id:p.p_customer_id,company_id})));return{ok:true};});
+define(["set_customer_allowed_categories"],(s,c,p)=>{manager(c);find(s,"customers",p.p_customer_id);if(!Array.isArray(p.p_categories))throw new DemoError("22023","invalid_categories");const entries=p.p_categories.map(object);s.tables.customer_allowed_categories=rows(s,"customer_allowed_categories").filter(x=>x.customer_id!==p.p_customer_id);rows(s,"customer_allowed_categories").push(...entries.map(x=>({customer_id:p.p_customer_id,category_key:x.key,label_ar:x.label_ar??null,label_en:x.label_en??null})));return{ok:true};});
+function attachmentAccess(s:DemoState,c:OperationContext,requestId:unknown,write=false):Row{const actor=requireActor(c);const request=find(s,"requests",requestId);if(actor.portalRole){portal(c,write);if(request.customer_id!==actor.customerId||actor.portalRole==="authorized_requester"&&request.submitted_by!==actor.userId)throw new DemoError("42501","not_authorized",403);if(write&&resolveDemoPortalSettings(s,actor.customerId).allow_attachments!==true)throw new DemoError("42501","attachments_disabled",403);}else if(write)operator(c);else staff(c);return request;}
+function registerRequestAttachment(s:DemoState,c:OperationContext,p:Row,isPortal:boolean):Row {
+  const actor=requireActor(c);
+  if(Boolean(actor.portalRole)!==isPortal)throw new DemoError("42501","not_authorized",403);
+  const path=str(p.p_storage_path);
+  const request=isPortal?portalAttachmentWriteRequest(s,c,path):attachmentAccess(s,c,p.p_request_id,true);
+  if(request.id!==p.p_request_id)throw new DemoError("22023","invalid_path");
+  const classification=isPortal?"customer_visible":str(p.p_classification);
+  const functionalType=isPortal?"request_attachment":str(p.p_functional_type);
+  if(!isPortal){
+    if(!actor.role||!["admin","it_manager","technician"].includes(actor.role))throw new DemoError("42501","not_authorized",403);
+    if(!["customer_visible","internal","financial"].includes(classification))throw new DemoError("22023","invalid_classification");
+    if(classification!=="internal"&&!financial(c))throw new DemoError("42501","not_authorized",403);
+    if((p.p_visible_to_customer===true)!==(classification==="customer_visible"))throw new DemoError("22023","visibility_mismatch");
+    if(!["request_attachment","photo","financial_invoice","other"].includes(functionalType))throw new DemoError("22023","invalid_functional_type");
+    if((functionalType==="financial_invoice")!==(classification==="financial"))throw new DemoError("22023","classification_mismatch");
+    if(!new RegExp(`^requests/${request.id}/staff/(?:${classification}/)?[A-Za-z0-9._-]{1,150}$`).test(path))throw new DemoError("22023","invalid_path");
+  }
+  if(!str(p.p_file_name).trim()||str(p.p_file_name).length>200)throw new DemoError("22023","invalid_name");
+  const key=`request-attachments/${path}`,blob=s.blobs[key],owner=rows(s,"demo_blob_owners").find(x=>x.key===key);
+  if(!blob||owner?.actor_id!==actor.userId)throw new DemoError("P0002","object_not_found",404);
+  validateDemoAttachmentBlob(blob);
+  const existing=rows(s,"request_attachments").find(a=>a.storage_path===path);
+  if(existing){
+    if(!isPortal||existing.uploaded_by!==actor.userId||existing.request_id!==request.id||existing.file_name!==p.p_file_name||existing.uploaded_by_kind!=="portal"||existing.visible_to_customer!==true||existing.classification!=="customer_visible"||existing.functional_type!=="request_attachment"||existing.mime_type!==blob.type||existing.size_bytes!==blob.size)throw new DemoError("23505","already_registered",409);
+    return{ok:true,id:existing.id,registered:true};
+  }
+  const attachment=save(s,"request_attachments",null,{request_id:request.id,uploaded_by_kind:isPortal?"portal":"staff",uploaded_by:actor.userId,visible_to_customer:classification==="customer_visible",classification,functional_type:functionalType,file_name:p.p_file_name,storage_path:path,mime_type:blob.type,size_bytes:blob.size,scan_status:"pending"});
+  addEvent(s,c,"request_events",{request_id:request.id,event_type:"attachment_added",message:p.p_file_name,metadata:{attachment_id:attachment.id}});
+  return{ok:true,id:attachment.id};
+}
+define(["portal_register_request_attachment"],(s,c,p)=>registerRequestAttachment(s,c,p,true));
+define(["staff_register_request_attachment_v2"],(s,c,p)=>registerRequestAttachment(s,c,p,false));
+define(["portal_list_request_attachments"],(s,c,p)=>{attachmentAccess(s,c,p.p_request_id);return{ok:true,attachments:rows(s,"request_attachments").filter(a=>a.request_id===p.p_request_id&&a.classification==="customer_visible"&&(a.uploaded_by_kind==="portal"||a.visible_to_customer)).map(a=>({id:a.id,file_name:a.file_name,mime_type:a.mime_type,size_bytes:a.size_bytes,created_at:a.created_at,uploaded_by_kind:a.uploaded_by_kind,scan_status:a.scan_status}))};},false);
+define(["portal_get_request_attachment_path"],(s,c,p)=>{const a=find(s,"request_attachments",p.p_attachment_id);attachmentAccess(s,c,a.request_id);if(a.classification!=="customer_visible"||!(a.uploaded_by_kind==="portal"||a.visible_to_customer))throw new DemoError("42501","not_authorized",403);if(a.scan_status!=="clean")return{ok:false,error:"attachment_quarantined",scan_status:a.scan_status};return{ok:true,path:a.storage_path,file_name:a.file_name};},false);
+define(["staff_set_request_attachment_visibility"],(s,c,p)=>{
+  if(!["admin","it_manager"].includes(requireActor(c).role??""))return{ok:false,error:"not_authorized"};
+  const a=rows(s,"request_attachments").find(r=>r.id===p.p_attachment_id);if(!a)return{ok:false,error:"not_found"};
+  if(a.uploaded_by_kind!=="staff")return{ok:false,error:"not_allowed"};
+  if(a.classification==="financial")return{ok:false,error:"financial_visibility_forbidden"};
+  const visible=p.p_visible===true;Object.assign(a,{visible_to_customer:visible,classification:visible?"customer_visible":"internal"});
+  addEvent(s,c,"request_events",{request_id:a.request_id,event_type:"attachment_visibility_changed",message:a.file_name,metadata:{attachment_id:a.id,visible_to_customer:visible}});
+  return{ok:true};
+});
+define(["record_auth_security_event"],(s,c,p)=>{requireActor(c);addEvent(s,c,"auth_security_events",{event_type:p.p_event_type,metadata:p.p_metadata??{}});return{ok:true};});
+define(["action_alerts_sync"],(s,c,p)=>{operator(c);if(!Array.isArray(p.p_candidates))throw new DemoError("22023","invalid_candidates");const candidates=p.p_candidates.map(object);const keys=new Set(candidates.map(x=>x.stable_key));for(const current of rows(s,"action_alert_instances")){if(!keys.has(current.stable_key)&&current.status!=="auto_resolved")Object.assign(current,{status:"auto_resolved",auto_resolved_at:now()});}for(const candidate of candidates){const existing=rows(s,"action_alert_instances").find(a=>a.stable_key===candidate.stable_key);if(existing)Object.assign(existing,{...candidate,last_seen_at:now(),status:existing.status==="auto_resolved"?"reopened":existing.status});else save(s,"action_alert_instances",null,{...candidate,status:"open",assigned_to:null,assigned_at:null,first_seen_at:now(),last_seen_at:now(),auto_resolved_at:null,occurrence_count:1,last_action_at:null});}return{ok:true,synced:candidates.length};});
+define(["action_alert_operational_counts"],(s,c)=>{staff(c);const a=rows(s,"action_alert_instances");return{needs_action:a.filter(x=>["open","reopened"].includes(str(x.status))).length,high_severity:a.filter(x=>["critical","high"].includes(str(x.severity))&&x.status!=="auto_resolved").length,in_progress:a.filter(x=>x.status==="in_progress").length,mine:a.filter(x=>x.assigned_to===c.actor?.userId&&x.status!=="auto_resolved").length,resolved:a.filter(x=>x.status==="auto_resolved").length,resolved_today:a.filter(x=>x.status==="auto_resolved"&&str(x.auto_resolved_at).startsWith(now().slice(0,10))).length};},false);
+define(["action_alert_assign","action_alert_start","action_alert_note"],(s,c,p)=>{operator(c);const alert=find(s,"action_alert_instances",p.p_id);if(Object.hasOwn(p,"p_user")){if(p.p_user)find(s,"app_users",p.p_user);alert.assigned_to=p.p_user;alert.assigned_at=now();}else if(Object.hasOwn(p,"p_note")){if(!str(p.p_note).trim())throw new DemoError("22023","note_required");addEvent(s,c,"action_alert_events",{alert_instance_id:alert.id,event_type:"note",note:p.p_note});}else alert.status="in_progress";alert.last_action_at=now();return{ok:true};});
+const emailDefaults:Row={email_enabled:false,test_mode:true,daily_digest_enabled:true,working_days:[0,1,2,3,4],digest_time:"08:00",request_events_enabled:true,return_reminders_enabled:true,account_events_enabled:true,daily_warning_threshold:100,monthly_warning_threshold:2000};
+define(["automation_email_settings_get"],(s,c)=>{manager(c);return{...emailDefaults,...rows(s,"demo_email_settings")[0]};},false);
+define(["automation_email_settings_update"],(s,c,p)=>{manager(c);const input=object(p.p_settings);let setting=rows(s,"demo_email_settings")[0];if(!setting){setting={id:"main",...emailDefaults};rows(s,"demo_email_settings").push(setting);}Object.assign(setting,input,{test_mode:true});return setting;});
+define(["automation_delivery_overview"],(s,c)=>{manager(c);const list=rows(s,"automation_deliveries");return{sent_today:0,delivered_today:0,pending:list.filter(x=>x.status==="pending").length,failed:list.filter(x=>x.status==="failed").length,suppressed:list.filter(x=>x.status==="suppressed").length,last_dispatch:null,last_digest:null};},false);
+define(["automation_delivery_recent"],(s,c,p)=>{manager(c);return[...rows(s,"automation_deliveries")].reverse().slice(0,num(p.p_limit,20));},false);
+define(["automation_delivery_action"],(s,c,p)=>{manager(c);const row=find(s,"automation_deliveries",p.p_id);if(!["retry","cancel"].includes(str(p.p_action)))throw new DemoError("22023","invalid_action");Object.assign(row,{status:p.p_action==="cancel"?"suppressed":"suppressed",safe_error:"demo_no_email_sent",sent_at:null});return{ok:true,simulated:true};});
+define(["automation_email_enqueue_staging_test"],(s,c)=>{manager(c);const row=save(s,"automation_deliveries",null,{status:"suppressed",template_key:"staging_test",event_type:"test",recipient_email:c.actor?.email,provider_message_id:null,safe_error:"demo_no_email_sent",sent_at:null});return{ok:true,id:row.id,simulated:true};});

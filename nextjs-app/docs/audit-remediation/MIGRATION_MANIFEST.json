@@ -1,0 +1,1997 @@
+{
+  "manifestVersion": 1,
+  "contract": "itam-local-rebuild",
+  "baselineCutover": "20260707030000",
+  "notes": [
+    "No user data or secrets are part of this manifest.",
+    "The baseline replaces uncommitted foundational migrations; absorbed entries are retained for provenance and checksum review only.",
+    "Production-only scheduling is never executed by the local rebuild.",
+    "A production-equivalent restore and remote migration-ledger reconciliation remain blocked on authorized staging access."
+  ],
+  "digestAlgorithm": "sha256",
+  "manifestDigest": "9905ee1b97c86950e902de86fad8e4928484b0b01b82191d736c21ae81449096",
+  "ordered": [
+    {
+      "order": 1,
+      "id": "baseline_20260707",
+      "path": "migrations/_baseline/00_full_db_snapshot_20260707.sql",
+      "kind": "baseline",
+      "executionMode": "local_rebuild",
+      "purpose": "Restore the reviewed data-free public schema snapshot that replaces the missing foundational migration files.",
+      "dependsOn": [],
+      "sha256": "9ff44f18d7c525cd8a538d37c8deb181c208d11ffb98dc8678071c7538f792a8"
+    },
+    {
+      "order": 2,
+      "id": "bootstrap_baseline_privileges",
+      "path": "scripts/test/bootstrap-baseline-privileges.sql",
+      "kind": "local_test_bootstrap",
+      "executionMode": "local_rebuild_only",
+      "purpose": "Restore a fail-closed ACL starting point omitted by the generated baseline; never apply this test bootstrap to production.",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "e6ea4cd1673ea48365d0f246ef24278b8399802172fa5cbaf1b46e2b28d88061"
+    },
+    {
+      "order": 3,
+      "id": "20260701150032_high1b_financial_column_grants_correction",
+      "path": "migrations/20260701150032_high1b_financial_column_grants_correction.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "high1b financial column grants correction",
+      "dependsOn": [
+        "bootstrap_baseline_privileges"
+      ],
+      "sha256": "f464176c9cf8599f5dfb1624acb87cf9eb661514d57d15dcc727d5077bf999f5"
+    },
+    {
+      "order": 4,
+      "id": "20260707030000_enable_rls_purchase_request_sequences",
+      "path": "migrations/20260707030000_enable_rls_purchase_request_sequences.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "enable rls purchase request sequences",
+      "dependsOn": [
+        "20260701150032_high1b_financial_column_grants_correction"
+      ],
+      "sha256": "a6e7be1592eb646317a162303e18b0812d024405cca4f702e7cfdfc77b767eab"
+    },
+    {
+      "order": 5,
+      "id": "20260707030100_consumables_guard_unit_cost_financial",
+      "path": "migrations/20260707030100_consumables_guard_unit_cost_financial.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "consumables guard unit cost financial",
+      "dependsOn": [
+        "20260707030000_enable_rls_purchase_request_sequences"
+      ],
+      "sha256": "fed124987ef9fee0f0d96ce78ea454a6eec4426e6542cf7f57ce0566f4151db7"
+    },
+    {
+      "order": 6,
+      "id": "20260707040000_portal_enforce_enabled",
+      "path": "migrations/20260707040000_portal_enforce_enabled.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "portal enforce enabled",
+      "dependsOn": [
+        "20260707030100_consumables_guard_unit_cost_financial"
+      ],
+      "sha256": "d6395636c507968b770114fd8c874f621de3969fed87d7fc8cfcf66e3112d8bc"
+    },
+    {
+      "order": 7,
+      "id": "20260707120000_crq_reports_drop_email_pii",
+      "path": "migrations/20260707120000_crq_reports_drop_email_pii.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "crq reports drop email pii",
+      "dependsOn": [
+        "20260707040000_portal_enforce_enabled"
+      ],
+      "sha256": "9b4ec8c7a4cba2a3ac6aa60243c1d3e7565a93fbe0e97ff3f6697fc26dbb9774"
+    },
+    {
+      "order": 8,
+      "id": "20260707120500_user_labels_batch",
+      "path": "migrations/20260707120500_user_labels_batch.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "user labels batch",
+      "dependsOn": [
+        "20260707120000_crq_reports_drop_email_pii"
+      ],
+      "sha256": "f69c17d49ec941fd09bba09482515d76243ef8e569804516377ee81ead11d381"
+    },
+    {
+      "order": 9,
+      "id": "20260708100000_employee_internal_requests",
+      "path": "migrations/20260708100000_employee_internal_requests.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "employee internal requests",
+      "dependsOn": [
+        "20260707120500_user_labels_batch"
+      ],
+      "sha256": "e7b8d70919083e8b6c26111b754735d3a97e6fbadf9b88d233c2e004e725d907"
+    },
+    {
+      "order": 10,
+      "id": "20260708153000_inventory_settings",
+      "path": "migrations/20260708153000_inventory_settings.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "inventory settings",
+      "dependsOn": [
+        "20260708100000_employee_internal_requests"
+      ],
+      "sha256": "9e1f38e4aef0585e22bacc09ddc37f4fed5814ac5b9dba02f076714f3c4be187"
+    },
+    {
+      "order": 11,
+      "id": "20260709100000_request_create_employee_self",
+      "path": "migrations/20260709100000_request_create_employee_self.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "طلب موظف داخلي (عهدة) يُسجَّل تلقائيًا باسم الحساب الحالي.",
+      "dependsOn": [
+        "20260708153000_inventory_settings"
+      ],
+      "sha256": "bf094672ebec2ba3a9b5765ef92257182bff172fa300d179d996a5e045e21f51"
+    },
+    {
+      "order": 12,
+      "id": "20260709110000_warehouse_manager_role",
+      "path": "migrations/20260709110000_warehouse_manager_role.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "دور RBAC جديد «مدير المستودع» (warehouse_manager) — نظير technician",
+      "dependsOn": [
+        "20260709100000_request_create_employee_self"
+      ],
+      "sha256": "e936a0b8f7087a0bff4c90f49408996c021e90333eee59467dc46f6e7df9f25f"
+    },
+    {
+      "order": 13,
+      "id": "20260709120000_auto_provision_engine",
+      "path": "migrations/20260709120000_auto_provision_engine.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "محرك التجهيز التلقائي — بعد اعتماد الطلب يبحث النظام في الأصول المتاحة،",
+      "dependsOn": [
+        "20260709110000_warehouse_manager_role"
+      ],
+      "sha256": "40262efc3889e6e529ac437fedaac21583b259f21c493ce5e153e6292942ff8d"
+    },
+    {
+      "order": 14,
+      "id": "20260709120500_item_fulfill_convert_allow_provisioned_shortage",
+      "path": "migrations/20260709120500_item_fulfill_convert_allow_provisioned_shortage.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "السماح بربط بند بالمخزون (request_item_fulfill) وتحويله إلى طلب شراء",
+      "dependsOn": [
+        "20260709120000_auto_provision_engine"
+      ],
+      "sha256": "768cb3f86798e68b02d1f39cf175a82ec84ab363667896c2455cd97a36655439"
+    },
+    {
+      "order": 15,
+      "id": "20260709130000_return_inspection_and_asset_counters",
+      "path": "migrations/20260709130000_return_inspection_and_asset_counters.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "الإرجاع والفحص المنظّم لكل جهاز + عدّادات تتبّع على الأصل.",
+      "dependsOn": [
+        "20260709120500_item_fulfill_convert_allow_provisioned_shortage"
+      ],
+      "sha256": "b0cb618477bb83ef5af308efacbd6147783622fc6534a6d6970f77a9ae7d685f"
+    },
+    {
+      "order": 16,
+      "id": "20260709140000_open_customer_self_registration",
+      "path": "migrations/20260709140000_open_customer_self_registration.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "تسجيل ذاتي مفتوح للعميل الخارجي + موافقة إدارية.",
+      "dependsOn": [
+        "20260709130000_return_inspection_and_asset_counters"
+      ],
+      "sha256": "ad67c48934171a03d822711ac4aa7b1764da8c57d73855a0f252a0ab0c5ab538"
+    },
+    {
+      "order": 17,
+      "id": "20260709150000_request_complete_require_return_inspection",
+      "path": "migrations/20260709150000_request_complete_require_return_inspection.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "F-A (High) — منع تجاوز فحص الإرجاع في request_complete.",
+      "dependsOn": [
+        "20260709140000_open_customer_self_registration"
+      ],
+      "sha256": "0507189c1026e14f282d7af44179dd16cc49f1c4e3ca461c52b1c3adbbd847d2"
+    },
+    {
+      "order": 18,
+      "id": "20260712120000_fix_maintenance_guard_cost_notnull",
+      "path": "migrations/20260712120000_fix_maintenance_guard_cost_notnull.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "إصلاح B1 — الزناد public.maintenance_guard_financial (BEFORE INSERT/UPDATE على",
+      "dependsOn": [
+        "20260709150000_request_complete_require_return_inspection"
+      ],
+      "sha256": "ddcee106a6e3ab8f181f0662d36d0c516585813e6f5b2eb79e2f5130fe40fb29"
+    },
+    {
+      "order": 19,
+      "id": "20260713035537_portal_profile_catalog_rental_phone",
+      "path": "migrations/20260713035537_portal_profile_catalog_rental_phone.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "--   1) portal_get_profile()            [جديد] قراءة ملف مستخدم البوابة (بلا بريد، بلا معرّف عميل)",
+      "dependsOn": [
+        "20260712120000_fix_maintenance_guard_cost_notnull"
+      ],
+      "sha256": "d5eaf137636cfe32f08bc4ed20f4167731492565d4d116adc8bb3eaa292aa050"
+    },
+    {
+      "order": 20,
+      "id": "20260713035738_portal_new_fns_revoke_anon",
+      "path": "migrations/20260713035738_portal_new_fns_revoke_anon.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "Supabase يمنح EXECUTE افتراضيًا لـ anon عند إنشاء الدوال (ALTER DEFAULT PRIVILEGES)، لذا",
+      "dependsOn": [
+        "20260713035537_portal_profile_catalog_rental_phone"
+      ],
+      "sha256": "f2ff844bb557b1862f2d520576ce4f880cf65a2fcd452b3294b3856953d368f9"
+    },
+    {
+      "order": 21,
+      "id": "20260713150356_portal_catalog_authz_models_schema_consumables",
+      "path": "migrations/20260713150356_portal_catalog_authz_models_schema_consumables.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "--   (أ) portal_list_catalog: يُعاد بناؤه ليحترم سماح التصنيفات (تعيين اسم→مفتاح بوابة، fail-closed)",
+      "dependsOn": [
+        "20260713035738_portal_new_fns_revoke_anon"
+      ],
+      "sha256": "d9d88bfb2997c8c9c5452ff18880b913a9213cda75c98db53c49ecd342aaaf6d"
+    },
+    {
+      "order": 22,
+      "id": "20260713181249_lock_request_auto_provision_execute",
+      "path": "migrations/20260713181249_lock_request_auto_provision_execute.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "prevent direct API execution of the internal auto-provision helper.",
+      "dependsOn": [
+        "20260713150356_portal_catalog_authz_models_schema_consumables"
+      ],
+      "sha256": "57be34bcce1073a72cac85091f6a49685b16ac42c8f472c1a8b5a24e02fb391f"
+    },
+    {
+      "order": 23,
+      "id": "20260713183526_seed_high_confidence_catalog_models",
+      "path": "migrations/20260713183526_seed_high_confidence_catalog_models.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "seed the 13 owner-approved high-confidence catalog models.",
+      "dependsOn": [
+        "20260713181249_lock_request_auto_provision_execute"
+      ],
+      "sha256": "6e6bf25b377492265e3a8f1eeebdb97d321470b8f57501dbc7ba6dd767ec57ba"
+    },
+    {
+      "order": 24,
+      "id": "20260713183910_request_complete_require_verified_inspection",
+      "path": "migrations/20260713183910_request_complete_require_verified_inspection.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "close the remaining request_complete bypass after request_return.",
+      "dependsOn": [
+        "20260713183526_seed_high_confidence_catalog_models"
+      ],
+      "sha256": "f25fd0bcfddd71fcb44410931e28733fad678dfb133af8c3f77bca66e167e257"
+    },
+    {
+      "order": 25,
+      "id": "20260713184255_restrict_asset_insert_to_managers",
+      "path": "migrations/20260713184255_restrict_asset_insert_to_managers.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "align asset creation enforcement with the admin/it_manager UI rule.",
+      "dependsOn": [
+        "20260713183910_request_complete_require_verified_inspection"
+      ],
+      "sha256": "8be1b4e8dfcf3372e9898c1504667a9b4289022e79fdf09ccf8102d1327424e4"
+    },
+    {
+      "order": 26,
+      "id": "20260713184314_restrict_models_write_to_managers",
+      "path": "migrations/20260713184314_restrict_models_write_to_managers.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "prevent technician writes to catalog models while preserving reads.",
+      "dependsOn": [
+        "20260713184255_restrict_asset_insert_to_managers"
+      ],
+      "sha256": "fc374c10c40935b8ecccf529377785e665455e69336e1110978bd71e2da7e934"
+    },
+    {
+      "order": 27,
+      "id": "20260713184335_allow_warehouse_scan_logs",
+      "path": "migrations/20260713184335_allow_warehouse_scan_logs.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "allow warehouse_manager to use the scan workflow that is core to",
+      "dependsOn": [
+        "20260713184314_restrict_models_write_to_managers"
+      ],
+      "sha256": "69a04bbade4b5772a9bcadc954d60fafbf8827d58e72b549300742c9ee78b3a0"
+    },
+    {
+      "order": 28,
+      "id": "20260713184804_restrict_imported_asset_creation_to_managers",
+      "path": "migrations/20260713184804_restrict_imported_asset_creation_to_managers.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "prevent SECURITY DEFINER import_inventory from bypassing the",
+      "dependsOn": [
+        "20260713184335_allow_warehouse_scan_logs"
+      ],
+      "sha256": "028c21c0c8862d9b0e91f8595676cc05a4031c7049ed38c36405240a2fcd5aea"
+    },
+    {
+      "order": 29,
+      "id": "20260714090000_restrict_warehouse_direct_custody",
+      "path": "migrations/20260714090000_restrict_warehouse_direct_custody.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "restrict warehouse direct custody",
+      "dependsOn": [
+        "20260713184804_restrict_imported_asset_creation_to_managers"
+      ],
+      "sha256": "d6d1c8b6c6928c28f1c4189e3cafeb93cac52c939064c947eec111bdbeb1f3e5"
+    },
+    {
+      "order": 30,
+      "id": "20260714100000_email_automation_schema",
+      "path": "migrations/20260714100000_email_automation_schema.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "exactly three private automation tables plus secure enqueue/claim/freeze/result RPCs.",
+      "dependsOn": [
+        "20260714090000_restrict_warehouse_direct_custody"
+      ],
+      "sha256": "6c0c352c1c9935c44aecc5d00f1c5b6fc49d76d46e7bc7e41175cbecb5833e6b"
+    },
+    {
+      "order": 31,
+      "id": "20260714100100_email_automation_enqueue",
+      "path": "migrations/20260714100100_email_automation_enqueue.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "atomic maintenance-opened and custody-proof enqueue without modifying drifted RPC bodies.",
+      "dependsOn": [
+        "20260714100000_email_automation_schema"
+      ],
+      "sha256": "5dcd86905a79ba8f1fb9e67d8f2dc7b9286a20d64ed50470ef3aa6f6c4dd6ee4"
+    },
+    {
+      "order": 32,
+      "id": "20260715043000_harden_security_definer_anon_grants",
+      "path": "migrations/20260715043000_harden_security_definer_anon_grants.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "harden security definer anon grants",
+      "dependsOn": [
+        "20260714100100_email_automation_enqueue"
+      ],
+      "sha256": "22a1fbd0a402be41ff7b12c5715b5266302a06a787f1b6e7d9e944159ebc9ca9"
+    },
+    {
+      "order": 33,
+      "id": "20260715050000_fix_automation_enqueue_priority_cast",
+      "path": "migrations/20260715050000_fix_automation_enqueue_priority_cast.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "fix automation enqueue priority cast",
+      "dependsOn": [
+        "20260715043000_harden_security_definer_anon_grants"
+      ],
+      "sha256": "34c7e77265fc9515bf720af43dc29c7c1b6dcffbdae4020328352005bdb28c68"
+    },
+    {
+      "order": 34,
+      "id": "20260716000000_rc2_restrict_invoice_metadata_and_direct_mutations",
+      "path": "migrations/20260716000000_rc2_restrict_invoice_metadata_and_direct_mutations.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "rc2 restrict invoice metadata and direct mutations",
+      "dependsOn": [
+        "20260715050000_fix_automation_enqueue_priority_cast"
+      ],
+      "sha256": "10052ea37ccf242151afc4f69d06000c9dd61859bcc82deef6d8573d48df60da"
+    },
+    {
+      "order": 35,
+      "id": "bootstrap_pre_remediation_authz",
+      "path": "scripts/test/bootstrap-pre-remediation-authz.sql",
+      "kind": "local_test_bootstrap",
+      "executionMode": "local_rebuild_only",
+      "purpose": "Seed deterministic synthetic authorization reference rows omitted by the data-free baseline; never apply this test bootstrap to production.",
+      "dependsOn": [
+        "20260716000000_rc2_restrict_invoice_metadata_and_direct_mutations"
+      ],
+      "sha256": "87828bd124bfdc6b1ef1a64f31c66a1d2465c96fa5d3927985da07257dc2528f"
+    },
+    {
+      "order": 36,
+      "id": "20260727144004_harden_staff_request_creation",
+      "path": "migrations/20260727144004_harden_staff_request_creation.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "F-001 — make staff request creation a single server-controlled",
+      "dependsOn": [
+        "bootstrap_pre_remediation_authz"
+      ],
+      "sha256": "b6361f9e10bf68518f123faa96fe119823b801ffc2e15e08c7f39586fe85133b"
+    },
+    {
+      "order": 37,
+      "id": "20260727144620_attachment_classification_hardening",
+      "path": "migrations/20260727144620_attachment_classification_hardening.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "F-002/F-008 — replace path-substring-only attachment authorization",
+      "dependsOn": [
+        "20260727144004_harden_staff_request_creation"
+      ],
+      "sha256": "d7f91e27911e4e66c87ac86132b31c49cd4969abad67e2e916c2ebb9c0f7283e"
+    },
+    {
+      "order": 38,
+      "id": "20260727145511_request_state_machine_hardening",
+      "path": "migrations/20260727145511_request_state_machine_hardening.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "F-003 — establish one request transition matrix, enforce the",
+      "dependsOn": [
+        "20260727144620_attachment_classification_hardening"
+      ],
+      "sha256": "b942e3bfeaf95a8c097c359a8b42c585438abfe9060a267e996a2accc4bff1b3"
+    },
+    {
+      "order": 39,
+      "id": "20260727150423_purchase_receiving_bridge_hardening",
+      "path": "migrations/20260727150423_purchase_receiving_bridge_hardening.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "F-004 — cap purchase receiving under row locks, derive header",
+      "dependsOn": [
+        "20260727145511_request_state_machine_hardening"
+      ],
+      "sha256": "432c85705c1b4426f9d1c09c7c38813bf6bee45023bf7c0cd5d00e48356c7d31"
+    },
+    {
+      "order": 40,
+      "id": "20260727152018_atomic_business_operations",
+      "path": "migrations/20260727152018_atomic_business_operations.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "atomic business operations",
+      "dependsOn": [
+        "20260727150423_purchase_receiving_bridge_hardening"
+      ],
+      "sha256": "71cc155c4dceb22e42912a5d7bd2c370de1764e2d48c833278fb5e23bdc2b452"
+    },
+    {
+      "order": 41,
+      "id": "20260727152842_capability_consistency_hardening",
+      "path": "migrations/20260727152842_capability_consistency_hardening.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "capability consistency hardening",
+      "dependsOn": [
+        "20260727152018_atomic_business_operations"
+      ],
+      "sha256": "6e7d40d1d5a9eb9b0c18e14a35d4193f0d0517087f748d985c391e12524969d3"
+    },
+    {
+      "order": 42,
+      "id": "20260727153809_future_asset_integrity_guards",
+      "path": "migrations/20260727153809_future_asset_integrity_guards.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "future asset integrity guards",
+      "dependsOn": [
+        "20260727152842_capability_consistency_hardening"
+      ],
+      "sha256": "8dc492f367fbddab13560dade0a3e2bbccdaa14bd4c2f3239036958477bb4ca9"
+    },
+    {
+      "order": 43,
+      "id": "20260727154633_dashboard_exact_aggregates",
+      "path": "migrations/20260727154633_dashboard_exact_aggregates.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "dashboard exact aggregates",
+      "dependsOn": [
+        "20260727153809_future_asset_integrity_guards"
+      ],
+      "sha256": "bd320736de1f8bdbc0f888fbdc3ca653a73adc61390f2cbce660985325c84e8f"
+    },
+    {
+      "order": 44,
+      "id": "20260731073033_schema_compatibility_contract",
+      "path": "migrations/20260731073033_schema_compatibility_contract.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "expose a minimal, non-sensitive schema compatibility contract so the",
+      "dependsOn": [
+        "20260727154633_dashboard_exact_aggregates"
+      ],
+      "sha256": "d490559a4518c9b14cc5569a8f249c1740973abdb73a45ce2189805159a2c213"
+    },
+    {
+      "order": 45,
+      "id": "20260731105203_attachment_quarantine_lifecycle",
+      "path": "migrations/20260731105203_attachment_quarantine_lifecycle.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "P0-02 — make attachment reads fail closed until a trusted scanner",
+      "dependsOn": [
+        "20260731073033_schema_compatibility_contract"
+      ],
+      "sha256": "db570bf023721fbc51fd94fc8ae1e8803fb9a3bae5e2ad4f1a510f58fe8f09d7"
+    },
+    {
+      "order": 46,
+      "id": "20260731110758_custody_integrity_and_reconciliation",
+      "path": "migrations/20260731110758_custody_integrity_and_reconciliation.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "P0-03 — enforce custody consistency in both directions and expose",
+      "dependsOn": [
+        "20260731105203_attachment_quarantine_lifecycle"
+      ],
+      "sha256": "76cab51e9cf7e67b0dad4660439acc5c307a2e3561f22edd54bc750087ee367a"
+    },
+    {
+      "order": 47,
+      "id": "20260731123640_financial_truthfulness",
+      "path": "migrations/20260731123640_financial_truthfulness.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "financial truthfulness",
+      "dependsOn": [
+        "20260731110758_custody_integrity_and_reconciliation"
+      ],
+      "sha256": "1aa0af9d99619769cae189773dc5633b15d7f780a6e69d4860d279f9e70c4bd3"
+    },
+    {
+      "order": 48,
+      "id": "20260731133000_schema_contract_p0_complete",
+      "path": "migrations/20260731133000_schema_contract_p0_complete.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "advance the application/schema compatibility ledger after all P0",
+      "dependsOn": [
+        "20260731123640_financial_truthfulness"
+      ],
+      "sha256": "64e613b2aaf76814731b5d0ce093c706218cd0b665fc8518fd5b2791e4df2ee5"
+    },
+    {
+      "order": 49,
+      "id": "20260731150000_stocktake_mvp",
+      "path": "migrations/20260731150000_stocktake_mvp.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "provide an RPC-only stocktake workflow with an immutable expected",
+      "dependsOn": [
+        "20260731133000_schema_contract_p0_complete"
+      ],
+      "sha256": "936dd2bb2ef27a18d8f8659585d2b58cf75055d263c79981193d5c4d9e2b0ef7"
+    },
+    {
+      "order": 50,
+      "id": "20260731151000_schema_contract_stocktake",
+      "path": "migrations/20260731151000_schema_contract_stocktake.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "prevent this application build from opening the Stocktake surface",
+      "dependsOn": [
+        "20260731150000_stocktake_mvp"
+      ],
+      "sha256": "63c8ab7adcfba74df82caf62b7b239c6b3834ebfeeb9ca7a5a451a696f7562c8"
+    },
+    {
+      "order": 51,
+      "id": "20260731160000_employee_self_service",
+      "path": "migrations/20260731160000_employee_self_service.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "employee self service",
+      "dependsOn": [
+        "20260731151000_schema_contract_stocktake"
+      ],
+      "sha256": "704f9d59046b790b07288c1dce9db188d8575c7ba968b99b011541f1bc2f0de0"
+    },
+    {
+      "order": 52,
+      "id": "20260731161000_schema_contract_employee_self_service",
+      "path": "migrations/20260731161000_schema_contract_employee_self_service.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "schema contract employee self service",
+      "dependsOn": [
+        "20260731160000_employee_self_service"
+      ],
+      "sha256": "f13c63dad22be4d3533781061d08e077227a2ef0cbbcbb19058d36f2c2008c32"
+    },
+    {
+      "order": 53,
+      "id": "20260731170000_unified_audit_ledger",
+      "path": "migrations/20260731170000_unified_audit_ledger.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "unified audit ledger",
+      "dependsOn": [
+        "20260731161000_schema_contract_employee_self_service"
+      ],
+      "sha256": "33df82596928bd4baf93a5174dd97c3d94bb1c47eb0b80d507a39f4d1709308c"
+    },
+    {
+      "order": 54,
+      "id": "20260731171000_schema_contract_unified_audit",
+      "path": "migrations/20260731171000_schema_contract_unified_audit.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "schema contract unified audit",
+      "dependsOn": [
+        "20260731170000_unified_audit_ledger"
+      ],
+      "sha256": "2306731c342be2f56a03d911d837fec3ea24a016c51cda46b4e999eb6229b5e7"
+    },
+    {
+      "order": 55,
+      "id": "20260731180000_risk_based_sod_delivery_proof",
+      "path": "migrations/20260731180000_risk_based_sod_delivery_proof.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "risk based sod delivery proof",
+      "dependsOn": [
+        "20260731171000_schema_contract_unified_audit"
+      ],
+      "sha256": "5161f002a01bf1a45327853720ab3cde6e88dca9784abcd18a7bfec5480b8bc1"
+    },
+    {
+      "order": 56,
+      "id": "20260731181000_schema_contract_sod_delivery",
+      "path": "migrations/20260731181000_schema_contract_sod_delivery.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "schema contract sod delivery",
+      "dependsOn": [
+        "20260731180000_risk_based_sod_delivery_proof"
+      ],
+      "sha256": "047f90db47916f9cd565f153514144074cb5eaa8392897fb2d3435058c79493e"
+    },
+    {
+      "order": 57,
+      "id": "20260731190000_pagination_performance",
+      "path": "migrations/20260731190000_pagination_performance.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "pagination performance",
+      "dependsOn": [
+        "20260731181000_schema_contract_sod_delivery"
+      ],
+      "sha256": "52831c99cb597e4730ede8758067a073b15a2967f6cc1dbfa3f1b921273e7ac1"
+    },
+    {
+      "order": 58,
+      "id": "20260731191000_schema_contract_pagination",
+      "path": "migrations/20260731191000_schema_contract_pagination.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "schema contract pagination",
+      "dependsOn": [
+        "20260731190000_pagination_performance"
+      ],
+      "sha256": "f62ae4c5ba01a766ec5746e20235f02057b33788f421cb0829b139064ff23112"
+    },
+    {
+      "order": 59,
+      "id": "20260731200000_auth_session_security",
+      "path": "migrations/20260731200000_auth_session_security.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "auth session security",
+      "dependsOn": [
+        "20260731191000_schema_contract_pagination"
+      ],
+      "sha256": "4873b948aabe2ca813ed4670575078401170eccd3f84b621bedf8101b5b9a379"
+    },
+    {
+      "order": 60,
+      "id": "20260731201000_schema_contract_auth_security",
+      "path": "migrations/20260731201000_schema_contract_auth_security.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "schema contract auth security",
+      "dependsOn": [
+        "20260731200000_auth_session_security"
+      ],
+      "sha256": "a2fa350bba556007665c445c9085e66079e8fdcd4e41a8b77b6132bc5848676c"
+    },
+    {
+      "order": 61,
+      "id": "20260731210000_request_maintenance_workflow",
+      "path": "migrations/20260731210000_request_maintenance_workflow.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "request maintenance workflow",
+      "dependsOn": [
+        "20260731201000_schema_contract_auth_security"
+      ],
+      "sha256": "0da1780597d1de48c56fd43d8362c50da55296a7e10246df6957f01b6b44dffb"
+    },
+    {
+      "order": 62,
+      "id": "20260731211000_schema_contract_request_maintenance",
+      "path": "migrations/20260731211000_schema_contract_request_maintenance.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "schema contract request maintenance",
+      "dependsOn": [
+        "20260731210000_request_maintenance_workflow"
+      ],
+      "sha256": "de3208f4d3a8602dca1fc6343c4a05f13fc715cd067ab9fc6cc7014fa28f5adc"
+    },
+    {
+      "order": 63,
+      "id": "20260731220000_procurement_boundary",
+      "path": "migrations/20260731220000_procurement_boundary.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "procurement boundary",
+      "dependsOn": [
+        "20260731211000_schema_contract_request_maintenance"
+      ],
+      "sha256": "bd11988332cf97898d2d358ada5a67b87f1ec89cc0cad2afd567532b7fd38352"
+    },
+    {
+      "order": 64,
+      "id": "20260731221000_schema_contract_procurement",
+      "path": "migrations/20260731221000_schema_contract_procurement.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "schema contract procurement",
+      "dependsOn": [
+        "20260731220000_procurement_boundary"
+      ],
+      "sha256": "424464736cb33204a70b420bf3d3ebe5d1f6df662d558f37468ec01bac4dcf19"
+    },
+    {
+      "order": 65,
+      "id": "20260803070509_edit_1_request_fulfillment_simplification",
+      "path": "migrations/20260803070509_edit_1_request_fulfillment_simplification.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "EDIT 1 — simplify request readiness, delivery, reserved-device",
+      "dependsOn": [
+        "20260731221000_schema_contract_procurement"
+      ],
+      "sha256": "d3a5525125a601c32e206993ddb101725d1b472927a600aa75a4d517812e2f3c"
+    },
+    {
+      "order": 66,
+      "id": "20260803081719_edit_1_employee_request_return_lifecycle",
+      "path": "migrations/20260803081719_edit_1_employee_request_return_lifecycle.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "EDIT 1 follow-up — preserve the employee assignment safeguards",
+      "dependsOn": [
+        "20260803070509_edit_1_request_fulfillment_simplification"
+      ],
+      "sha256": "06b032e5e24ece1fac754184e1d1b7b3e3f6c010aae6182158d551da5049ae47"
+    },
+    {
+      "order": 67,
+      "id": "20260803082104_edit_1_employee_rental_delivery_state",
+      "path": "migrations/20260803082104_edit_1_employee_rental_delivery_state.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "EDIT 1 follow-up — rental employee assignments remain delivered until inspected return.",
+      "dependsOn": [
+        "20260803081719_edit_1_employee_request_return_lifecycle"
+      ],
+      "sha256": "477d419651716f224d823c6e4452d4af8f69ea73555022823325fb862969e5de"
+    },
+    {
+      "order": 68,
+      "id": "20260803083930_edit_1_return_assignment_condition_mapping",
+      "path": "migrations/20260803083930_edit_1_return_assignment_condition_mapping.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "edit 1 return assignment condition mapping",
+      "dependsOn": [
+        "20260803082104_edit_1_employee_rental_delivery_state"
+      ],
+      "sha256": "a8b3a356cc3a926cae333277638563218f7b1874c8dfbdc3d9f3682c4f8ae562"
+    },
+    {
+      "order": 69,
+      "id": "20260803102808_edit_2_simplification",
+      "path": "migrations/20260803102808_edit_2_simplification.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "edit 2 simplification",
+      "dependsOn": [
+        "20260803083930_edit_1_return_assignment_condition_mapping"
+      ],
+      "sha256": "11d3624c84772b5a2c889750a680b69495a1792cf0dae57e4c72fe6f84edc411"
+    },
+    {
+      "order": 70,
+      "id": "20260804103000_six_role_tasks_and_return_intake",
+      "path": "migrations/20260804103000_six_role_tasks_and_return_intake.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "complete the employee-return loop with a warehouse-only, idempotent",
+      "dependsOn": [
+        "20260803102808_edit_2_simplification"
+      ],
+      "sha256": "0cb422beb482024885d1b70ce9f01dfa28349db33f6c5fcfdb65efb0fc1eb1cb"
+    },
+    {
+      "order": 71,
+      "id": "20260805120000_edit_3_account_and_exact_asset_traceability",
+      "path": "migrations/20260805120000_edit_3_account_and_exact_asset_traceability.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "EDIT 3 — preserve pending self-registration and add one canonical,",
+      "dependsOn": [
+        "20260804103000_six_role_tasks_and_return_intake"
+      ],
+      "sha256": "9cfb578bd35ce57eef7933bcb1fdcb5a190452aa9b0a2894bca4d3d80b61a0a1"
+    },
+    {
+      "order": 72,
+      "id": "20260806113000_edit_4_portal_availability_and_request_validation",
+      "path": "migrations/20260806113000_edit_4_portal_availability_and_request_validation.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "edit 4 portal availability and request validation",
+      "dependsOn": [
+        "20260805120000_edit_3_account_and_exact_asset_traceability"
+      ],
+      "sha256": "f063a4acd04e79238334ba5ce4124c5d16dd5e344650f6a70e591d48d3a8ae1c"
+    },
+    {
+      "order": 73,
+      "id": "20260806160000_edit_4_inventory_scope_and_discrepancy_review",
+      "path": "migrations/20260806160000_edit_4_inventory_scope_and_discrepancy_review.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "edit 4 inventory scope and discrepancy review",
+      "dependsOn": [
+        "20260806113000_edit_4_portal_availability_and_request_validation"
+      ],
+      "sha256": "91eb3d4d9553ab35dc15398118dc931f08a33cab2c8f86bade1d25988558aec4"
+    },
+    {
+      "order": 74,
+      "id": "20260806161000_edit_4_inventory_review_role_hardening",
+      "path": "migrations/20260806161000_edit_4_inventory_review_role_hardening.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "edit 4 inventory review role hardening",
+      "dependsOn": [
+        "20260806160000_edit_4_inventory_scope_and_discrepancy_review"
+      ],
+      "sha256": "df24aeab054df5fa46d1c0bba6c3fe5010150f159c5c00c0a32a8e0f547cdaa7"
+    },
+    {
+      "order": 75,
+      "id": "20260806161100_edit_4_inventory_create_compatibility",
+      "path": "migrations/20260806161100_edit_4_inventory_create_compatibility.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "edit 4 inventory create compatibility",
+      "dependsOn": [
+        "20260806161000_edit_4_inventory_review_role_hardening"
+      ],
+      "sha256": "36dc9cf3b424b0a35a12c6b933e73eca45bfda130d7d1ba4e3b454d9ed481822"
+    },
+    {
+      "order": 76,
+      "id": "20260806170000_edit_5_email_notifications",
+      "path": "migrations/20260806170000_edit_5_email_notifications.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "extend the existing ADR-004 automation outbox (do not create a",
+      "dependsOn": [
+        "20260806161100_edit_4_inventory_create_compatibility"
+      ],
+      "sha256": "d19a116c3e935d3b8c8b92b4b1d08a216ce6d27f9fb257afc7bae6a862f28aa5"
+    },
+    {
+      "order": 77,
+      "id": "20260806171000_edit_5_email_cron",
+      "path": "migrations/20260806171000_edit_5_email_cron.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "hourly scanner (which produces 09:00 Asia/Riyadh digests) and a",
+      "dependsOn": [
+        "20260806170000_edit_5_email_notifications"
+      ],
+      "sha256": "faea7881fe351530d90dd052aba069f2e8a086f89f20a55ddd1a0a8ac375ad8e"
+    },
+    {
+      "order": 78,
+      "id": "20260806172000_edit_5_staging_test_email",
+      "path": "migrations/20260806172000_edit_5_staging_test_email.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "provide the required Manager-only QA action without exposing a",
+      "dependsOn": [
+        "20260806171000_edit_5_email_cron"
+      ],
+      "sha256": "7a406e2df1683103f6da073a9a6fdd51d3fdc84ba9a26020a9a358a5730b872b"
+    },
+    {
+      "order": 79,
+      "id": "20260808130036_fix_automation_enqueue_integer_priority",
+      "path": "migrations/20260808130036_fix_automation_enqueue_integer_priority.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "restore Staging Auth sign-up and notification triggers whose priority",
+      "dependsOn": [
+        "20260806172000_edit_5_staging_test_email"
+      ],
+      "sha256": "d544475132a81dcc00e18e8b9d3cbdd7f46f88ba2856b67c50bcf3d5b83424a2"
+    },
+    {
+      "order": 80,
+      "id": "20260808133000_fix_exact_ready_state_transition",
+      "path": "migrations/20260808133000_fix_exact_ready_state_transition.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "preserve the legal approved -> preparing -> ready_for_pickup",
+      "dependsOn": [
+        "20260808130036_fix_automation_enqueue_integer_priority"
+      ],
+      "sha256": "fba68a1749c87356d5aa06b3acde00f1067110b1fba10dc7067b50b3112c4d1b"
+    },
+    {
+      "order": 81,
+      "id": "20260808140000_fix_stocktake_snapshot_model_fields",
+      "path": "migrations/20260808140000_fix_stocktake_snapshot_model_fields.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "fix stocktake snapshot model fields",
+      "dependsOn": [
+        "20260808133000_fix_exact_ready_state_transition"
+      ],
+      "sha256": "941f5330667bbe7048a3656a2feae471c887b64200814cb856bb11ea57b75b6a"
+    },
+    {
+      "order": 82,
+      "id": "20260808180000_revoke_trigger_guard_execute",
+      "path": "migrations/20260808180000_revoke_trigger_guard_execute.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "remove public RPC execution from an internal request-status trigger guard.",
+      "dependsOn": [
+        "20260808140000_fix_stocktake_snapshot_model_fields"
+      ],
+      "sha256": "c1e65b6e6b3c67d592114e6ae76930d8b7171f403394487ccef1701ec8d2524f"
+    },
+    {
+      "order": 83,
+      "id": "20260810024000_exact_asset_fulfillment_allocation_reconciliation",
+      "path": "migrations/20260810024000_exact_asset_fulfillment_allocation_reconciliation.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "Keep legacy custom-item asset fulfillment aligned with the exact",
+      "dependsOn": [
+        "20260808180000_revoke_trigger_guard_execute"
+      ],
+      "sha256": "c1eae6dd60e9f7ff308053f5b6b53e6611b6770b069cd7cea8414f9cf6529708"
+    },
+    {
+      "order": 84,
+      "id": "20260810154000_email_delivery_provider_attribution",
+      "path": "migrations/20260810154000_email_delivery_provider_attribution.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "email delivery provider attribution",
+      "dependsOn": [
+        "20260810024000_exact_asset_fulfillment_allocation_reconciliation"
+      ],
+      "sha256": "22ed535795952034891e7ad5f76c261b2102c8e9b5247c364bc33e0016241538"
+    },
+    {
+      "order": 85,
+      "id": "20260810160000_production_email_go_live_cutoff",
+      "path": "migrations/20260810160000_production_email_go_live_cutoff.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "production email go live cutoff",
+      "dependsOn": [
+        "20260810154000_email_delivery_provider_attribution"
+      ],
+      "sha256": "8cc50c68541e8907a26aebadc2cda4097b917df14eb657d0c34dc3870022fa46"
+    },
+    {
+      "order": 86,
+      "id": "20260810161000_production_controlled_email_test",
+      "path": "migrations/20260810161000_production_controlled_email_test.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "production controlled email test",
+      "dependsOn": [
+        "20260810160000_production_email_go_live_cutoff"
+      ],
+      "sha256": "f91450d0f04bfe5b2b15fe7a17f17286a319153aaf734ee2675dff74c6a12a3c"
+    },
+    {
+      "order": 87,
+      "id": "20260810161100_fix_production_controlled_email_test",
+      "path": "migrations/20260810161100_fix_production_controlled_email_test.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "fix production controlled email test",
+      "dependsOn": [
+        "20260810161000_production_controlled_email_test"
+      ],
+      "sha256": "c0a9693e79a216ec336651f24113779071d2b594f964c23902e0a3db4f67e87a"
+    },
+    {
+      "order": 88,
+      "id": "20260810162000_production_email_dispatch_cron",
+      "path": "migrations/20260810162000_production_email_dispatch_cron.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "production email dispatch cron",
+      "dependsOn": [
+        "20260810161100_fix_production_controlled_email_test"
+      ],
+      "sha256": "1cf54d08aefa3139bbb1f3cc4e664e4b5d7fd17dcd93f910eb986162429b8e63"
+    },
+    {
+      "order": 89,
+      "id": "20260811150000_prevent_stocktake_decision_overwrite",
+      "path": "migrations/20260811150000_prevent_stocktake_decision_overwrite.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "prevent stocktake decision overwrite",
+      "dependsOn": [
+        "20260810162000_production_email_dispatch_cron"
+      ],
+      "sha256": "1fdb0f9b48e36c69d0e863daeb1a2b560c4f7c81639341b2ac61de9dda472a28"
+    },
+    {
+      "order": 90,
+      "id": "20260811210000_auto_provision_exact_allocation",
+      "path": "migrations/20260811210000_auto_provision_exact_allocation.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "Record canonical exact-asset allocations for automatic provisioning.",
+      "dependsOn": [
+        "20260811150000_prevent_stocktake_decision_overwrite"
+      ],
+      "sha256": "c818741ed2430dcac702f667185a230bbaf9645102379c76cd534b35b1726ccf"
+    },
+    {
+      "order": 91,
+      "id": "20260812011500_request_date_contract",
+      "path": "migrations/20260812011500_request_date_contract.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "enforce the application-supported request delivery/return date range.",
+      "dependsOn": [
+        "20260811210000_auto_provision_exact_allocation"
+      ],
+      "sha256": "b12b5885de9016748c1537aaf747353226c9259ff9c6f29c8fba8b855644ac01"
+    },
+    {
+      "order": 92,
+      "id": "20260812013000_request_date_contract_return_requires_pickup",
+      "path": "migrations/20260812013000_request_date_contract_return_requires_pickup.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "require a delivery date whenever an expected return date is supplied.",
+      "dependsOn": [
+        "20260812011500_request_date_contract"
+      ],
+      "sha256": "7da7c03166233d79320e9d3e95c8e3b687fa02660c29e760007cbca395c0d556"
+    },
+    {
+      "order": 93,
+      "id": "20260812014000_request_date_guard_grants",
+      "path": "migrations/20260812014000_request_date_guard_grants.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "keep the request-date trigger implementation non-callable by application roles.",
+      "dependsOn": [
+        "20260812013000_request_date_contract_return_requires_pickup"
+      ],
+      "sha256": "ebacbd4a964056f4148e60e447a9370d2286d3e886e6a0446a4b59088b9423ec"
+    },
+    {
+      "order": 94,
+      "id": "20260812150000_asset_primary_status_simplification",
+      "path": "migrations/20260812150000_asset_primary_status_simplification.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "make assets.status a simple, safe three-state operational contract.",
+      "dependsOn": [
+        "20260812014000_request_date_guard_grants"
+      ],
+      "sha256": "96ecfcb445a4670665749680f4a969d68f5412e0a909f1caeb672b60242b30d6"
+    },
+    {
+      "order": 95,
+      "id": "20260812153000_reject_legacy_asset_status_rpc_inputs",
+      "path": "migrations/20260812153000_reject_legacy_asset_status_rpc_inputs.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "remove legacy primary-status branches from asset create/edit RPCs.",
+      "dependsOn": [
+        "20260812150000_asset_primary_status_simplification"
+      ],
+      "sha256": "025e3080504d81ea6a225bf538cfbc0851aaf4ba8015a946329bcb0551c3b858"
+    },
+    {
+      "order": 96,
+      "id": "20260812211929_rewrite_exact_delivery_primary_status",
+      "path": "migrations/20260812211929_rewrite_exact_delivery_primary_status.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "align exact-proof delivery with the canonical current asset status contract.",
+      "dependsOn": [
+        "20260812153000_reject_legacy_asset_status_rpc_inputs"
+      ],
+      "sha256": "5b2dce767167dc2b42ef6da86e95566b06b8cce08005cca899af8f5102693916"
+    },
+    {
+      "order": 97,
+      "id": "20260816162807_stocktake_inventory_report_status_counts",
+      "path": "migrations/20260816162807_stocktake_inventory_report_status_counts.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "restore distinct, authoritative reserved and delivered/custody counts",
+      "dependsOn": [
+        "20260812211929_rewrite_exact_delivery_primary_status"
+      ],
+      "sha256": "93f825258f992b8cf7a06e2394738e7ac2fa9c1cd458c05fd372ab31174c1a9a"
+    },
+    {
+      "order": 98,
+      "id": "20260816213510_maintenance_search_index",
+      "path": "migrations/20260816213510_maintenance_search_index.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "flatten non-financial maintenance and asset search fields so one",
+      "dependsOn": [
+        "20260816162807_stocktake_inventory_report_status_counts"
+      ],
+      "sha256": "e946bf82b69dae762a5a77d73af8e61ff8da2bdce0cb8386cb8d75b6147cf11c"
+    },
+    {
+      "order": 99,
+      "id": "20260817164103_supplier_atomic_writes",
+      "path": "migrations/20260817164103_supplier_atomic_writes.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "make supplier metadata and category membership one serialized,",
+      "dependsOn": [
+        "20260816213510_maintenance_search_index"
+      ],
+      "sha256": "22301961d618324b5af887f327772e991e19dbfa85f4c83076a749f01d2ef4e3"
+    },
+    {
+      "order": 100,
+      "id": "20260817165350_index_supplier_categories_category",
+      "path": "migrations/20260817165350_index_supplier_categories_category.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "cover the supplier_categories category foreign key and category-first lookups.",
+      "dependsOn": [
+        "20260817164103_supplier_atomic_writes"
+      ],
+      "sha256": "3a32761c56b139bd56c655c07ca2c01537d9e2f034591b2ed1f9597da9bdf828"
+    },
+    {
+      "order": 101,
+      "id": "20260817170623_customer_portal_activity_gate",
+      "path": "migrations/20260817170623_customer_portal_activity_gate.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "make customer administration RPC-only and make the portal identity",
+      "dependsOn": [
+        "20260817165350_index_supplier_categories_category"
+      ],
+      "sha256": "3d917e0e488337ac4a6b1c1fd478707d363042b45efe231a0d60e8db5772dc6a"
+    },
+    {
+      "order": 102,
+      "id": "20260817174126_staff_activity_and_operational_write_boundary",
+      "path": "migrations/20260817174126_staff_activity_and_operational_write_boundary.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "staff activity and operational write boundary",
+      "dependsOn": [
+        "20260817170623_customer_portal_activity_gate"
+      ],
+      "sha256": "b84703ebe53a94b62c83e817dd9f6212e068fa32b2989c7c7249fa45ed65db4e"
+    },
+    {
+      "order": 103,
+      "id": "20260817174845_inactive_staff_auth_state",
+      "path": "migrations/20260817174845_inactive_staff_auth_state.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "inactive staff auth state",
+      "dependsOn": [
+        "20260817174126_staff_activity_and_operational_write_boundary"
+      ],
+      "sha256": "eb2e4bd854523ae9a17a33043cd68cf376ca23e18432bdd81fe7f1d786f084ba"
+    },
+    {
+      "order": 104,
+      "id": "20260817180018_consumable_update_atomic_boundary",
+      "path": "migrations/20260817180018_consumable_update_atomic_boundary.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "consumable update atomic boundary",
+      "dependsOn": [
+        "20260817174845_inactive_staff_auth_state"
+      ],
+      "sha256": "5610b7d76c0054ed8ce803c2d4eee1a85f4b2b841de316f972fd91d913875e32"
+    },
+    {
+      "order": 105,
+      "id": "20260817180526_consumable_quantity_stocktake_enforcement",
+      "path": "migrations/20260817180526_consumable_quantity_stocktake_enforcement.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "consumable quantity stocktake enforcement",
+      "dependsOn": [
+        "20260817180018_consumable_update_atomic_boundary"
+      ],
+      "sha256": "d81f898f701f6297f9c4da2719b15cda192baaf5e302dce147da006bcc64413d"
+    },
+    {
+      "order": 106,
+      "id": "20260817181912_depreciation_rule_rpc_boundary",
+      "path": "migrations/20260817181912_depreciation_rule_rpc_boundary.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "move financial depreciation-policy mutations behind validated,",
+      "dependsOn": [
+        "20260817180526_consumable_quantity_stocktake_enforcement"
+      ],
+      "sha256": "a20b85cb264200219bcb7ebc588d8dcdc2a9385781464d7111ff87f97a6feffb"
+    },
+    {
+      "order": 107,
+      "id": "20260817204500_registration_admission_rpc_boundary",
+      "path": "migrations/20260817204500_registration_admission_rpc_boundary.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "enforce staff-registration admission in the database, make invite",
+      "dependsOn": [
+        "20260817181912_depreciation_rule_rpc_boundary"
+      ],
+      "sha256": "f6851f303a8b1b5d309a039971eb9c54270c682f7f3073cc148489fa63e3e73e"
+    },
+    {
+      "order": 108,
+      "id": "20260817221500_registration_trusted_provisioning_compatibility",
+      "path": "migrations/20260817221500_registration_trusted_provisioning_compatibility.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "preserve trusted service-role Auth provisioning while keeping all",
+      "dependsOn": [
+        "20260817204500_registration_admission_rpc_boundary"
+      ],
+      "sha256": "69d99bc727eb66ce587dc8d17e11b5960f53261499f03eaddc148d0944ea63c7"
+    },
+    {
+      "order": 109,
+      "id": "20260902173000_fix_asset_status_custody_atomicity",
+      "path": "migrations/20260902173000_fix_asset_status_custody_atomicity.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "fix asset status custody atomicity",
+      "dependsOn": [
+        "20260817221500_registration_trusted_provisioning_compatibility"
+      ],
+      "sha256": "1dc11ff4bf451bd1f245a206b94e1668337f0d5a2f7cdf53fdd3e321ec58ac2e"
+    },
+    {
+      "order": 110,
+      "id": "20260902180000_restore_exact_delivery_strong_proof",
+      "path": "migrations/20260902180000_restore_exact_delivery_strong_proof.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "restore exact delivery strong proof",
+      "dependsOn": [
+        "20260902173000_fix_asset_status_custody_atomicity"
+      ],
+      "sha256": "7e864246b253b2d2ac1749f9053c17bf11bfc3c061569ce42c2b26456c777ba1"
+    },
+    {
+      "order": 111,
+      "id": "20260930120000_rls_helper_initplan",
+      "path": "migrations/20260930120000_rls_helper_initplan.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "evaluate row-independent RLS helper calls once per statement (an InitPlan) instead of",
+      "dependsOn": [
+        "20260902180000_restore_exact_delivery_strong_proof"
+      ],
+      "sha256": "8b869a4e9815eca387aca1a8fbb292d73afaf7ca355d941f9ee28173dae0bb67"
+    },
+    {
+      "order": 112,
+      "id": "20261008231159_approve_employee_user_atomic",
+      "path": "migrations/20261008231159_approve_employee_user_atomic.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "approve an office identity with an explicitly selected active employee.",
+      "dependsOn": [
+        "20260930120000_rls_helper_initplan"
+      ],
+      "sha256": "3d1904d93bfa14ee7c255b9066d95d6ba9ccc5045b35a36aac5564a684d0b8cb"
+    },
+    {
+      "order": 113,
+      "id": "20261008232457_scan_warehouse_exit_destination",
+      "path": "migrations/20261008232457_scan_warehouse_exit_destination.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "scan warehouse exit destination",
+      "dependsOn": [
+        "20261008231159_approve_employee_user_atomic"
+      ],
+      "sha256": "365b80e3b9fe7b77e0da3b0d8195b2b5c52a94a09f1ba7354b6b68a314f2a11b"
+    },
+    {
+      "order": 114,
+      "id": "20261008233719_customer_admin_fail_closed",
+      "path": "migrations/20261008233719_customer_admin_fail_closed.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "close nullable-role authorization in customer administration RPCs.",
+      "dependsOn": [
+        "20261008232457_scan_warehouse_exit_destination"
+      ],
+      "sha256": "848c50cfeaaf59a18ded67379d3f9e06b574a236b9199d60ab446e23958acd16"
+    },
+    {
+      "order": 115,
+      "id": "20261008233941_stocktake_report_scope_and_identifier_errors",
+      "path": "migrations/20261008233941_stocktake_report_scope_and_identifier_errors.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "keep the location inventory maintenance count within its selected",
+      "dependsOn": [
+        "20261008233719_customer_admin_fail_closed"
+      ],
+      "sha256": "fb81fe12917d1233a2df97ddc0b65cc2ace9c8f120db35818d66557154872966"
+    },
+    {
+      "order": 116,
+      "id": "20261008234224_employee_request_cancel_actor_guard",
+      "path": "migrations/20261008234224_employee_request_cancel_actor_guard.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "allow the existing employee-owned, unprepared cancellation path to",
+      "dependsOn": [
+        "20261008233941_stocktake_report_scope_and_identifier_errors"
+      ],
+      "sha256": "9ca30b1e521b1f362de4f42bcde5f0441575d0bcac1eecc87f229365d52a72a9"
+    },
+    {
+      "order": 117,
+      "id": "20261008235856_request_operational_fail_closed",
+      "path": "migrations/20261008235856_request_operational_fail_closed.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "deny unapproved, inactive and non-staff callers before the five",
+      "dependsOn": [
+        "20261008234224_employee_request_cancel_actor_guard"
+      ],
+      "sha256": "2e50353bc834c813eaeaa7b680abf5b3aed6695740f3aaaf342bdc73c77c170f"
+    },
+    {
+      "order": 118,
+      "id": "20261008235903_reserved_asset_exact_allocation_swap",
+      "path": "migrations/20261008235903_reserved_asset_exact_allocation_swap.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "keep a reserved-device replacement and its canonical exact-asset",
+      "dependsOn": [
+        "20261008235856_request_operational_fail_closed"
+      ],
+      "sha256": "8220a8e521ea2575ae923dc5172273502300069e1afca9243320e06f509f8e19"
+    },
+    {
+      "order": 119,
+      "id": "20261009143304_receipt_stock_idempotency",
+      "path": "migrations/20261009143304_receipt_stock_idempotency.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "prevent duplicate goods receipts and stock movements after retries.",
+      "dependsOn": [
+        "20261008235903_reserved_asset_exact_allocation_swap"
+      ],
+      "sha256": "7a44c9e3b364666a80dc30cf01723625ae6e8d90e269646ed528beaac3089cdf"
+    },
+    {
+      "order": 120,
+      "id": "20261011025843_portal_atomic_and_procurement_security",
+      "path": "migrations/20261011025843_portal_atomic_and_procurement_security.sql",
+      "kind": "migration",
+      "executionMode": "local_rebuild",
+      "purpose": "close NULL-role procurement access; preserve legacy idempotent replays;",
+      "dependsOn": [
+        "20261009143304_receipt_stock_idempotency"
+      ],
+      "sha256": "9176641c2b253cc90d794721a82fbee3c4208150ed551741db6040ba9a417c53"
+    },
+    {
+      "order": 121,
+      "id": "bootstrap_operational_assets_grants",
+      "path": "scripts/test/bootstrap-operational-assets-grants.sql",
+      "kind": "local_test_bootstrap",
+      "executionMode": "local_rebuild_only",
+      "purpose": "Mirror only the reviewed non-financial archive-marker grant for disposable local UI verification; preserve financial ACLs and never execute this bootstrap on a hosted database.",
+      "dependsOn": [
+        "20261011025843_portal_atomic_and_procurement_security"
+      ],
+      "sha256": "c08b1f88f2d57d8c5a7feacb36a3b59a092f95c496e69413c97018952b20bec2"
+    }
+  ],
+  "absorbed": [
+    {
+      "id": "20260630201216_staff_registration_system",
+      "path": "migrations/20260630201216_staff_registration_system.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "staff registration system (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "162ae0c938a849abf30df71acd8a48ec715d46a312cdc9c4370eb72eb7a6d72d"
+    },
+    {
+      "id": "20260630201250_companies_classification",
+      "path": "migrations/20260630201250_companies_classification.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "companies classification (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "f63ea70b191751ab798d0bb46c918ab688c10a7504c53bbecd84848028f66195"
+    },
+    {
+      "id": "20260630201423_lock_down_anon_on_manager_rpcs",
+      "path": "migrations/20260630201423_lock_down_anon_on_manager_rpcs.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "lock down anon on manager rpcs (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "70d4eeecff7f1ecd70081c3737ccb403534a772003d4e9746975fca95615862f"
+    },
+    {
+      "id": "20260630210235_fix_null_role_guard_privilege_escalation",
+      "path": "migrations/20260630210235_fix_null_role_guard_privilege_escalation.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "fix null role guard privilege escalation (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "6f58ac045102ecb5f352d708176d82b5c8ee2d296c4cd2f0c1e1c853f69dacc9"
+    },
+    {
+      "id": "20260630215704_rfid_and_consumable_replenishment_fields",
+      "path": "migrations/20260630215704_rfid_and_consumable_replenishment_fields.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "rfid and consumable replenishment fields (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "9d5026004eca66b95458898e4b3b4043b84c7c57af414bd6455f2857feac4fba"
+    },
+    {
+      "id": "20260630222755_restrict_financial_invoice_attachments",
+      "path": "migrations/20260630222755_restrict_financial_invoice_attachments.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "restrict financial invoice attachments (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "979a6f58295ce6837325acbbae59586663d169a492a19ce9bdb09d2d06417279"
+    },
+    {
+      "id": "20260701100000_asset_status_rented_sold",
+      "path": "migrations/20260701100000_asset_status_rented_sold.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "asset status rented sold (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "7e8bd76eec5fa28c2f03846caeeb6ce41cda5f39b23de9b019489c4138acad42"
+    },
+    {
+      "id": "20260701100100_extend_asset_status_machine",
+      "path": "migrations/20260701100100_extend_asset_status_machine.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "extend asset status machine (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "2d2a6af95d3e5c79cb7bffcacc554f75d54f709efadb376a3019d7ca5237918d"
+    },
+    {
+      "id": "20260701100200_customer_requests_core",
+      "path": "migrations/20260701100200_customer_requests_core.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "customer requests core (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "4f11730ee42f3e34da6e60c885e234da993e37aeac91ce7c475afdb10db63732"
+    },
+    {
+      "id": "20260701100300_harden_request_rpcs_null_role",
+      "path": "migrations/20260701100300_harden_request_rpcs_null_role.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "harden request rpcs null role (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "e667be287bcefeb61b38795388ebc98a834823717667c59b70516e691793c4aa"
+    },
+    {
+      "id": "20260701100400_requests_status_state_machine",
+      "path": "migrations/20260701100400_requests_status_state_machine.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "requests status state machine (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "ddfe4c4b8c33cc2a32b19a1d149a2c7e84c2e9716d17a334402664a9ea604f15"
+    },
+    {
+      "id": "20260701100500_requests_workflow_rpcs",
+      "path": "migrations/20260701100500_requests_workflow_rpcs.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "requests workflow rpcs (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "b021f5ebd3d758ea137ce733c8e79d73ae8b9f0131822438541511f191d8f526"
+    },
+    {
+      "id": "20260701110000_scan_logs",
+      "path": "migrations/20260701110000_scan_logs.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "scan logs (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "e8756ad683fccbb7b1b3338e4d1a4e8c548093067dc13cb4539c872e366cc1a4"
+    },
+    {
+      "id": "20260701120000_asset_pools",
+      "path": "migrations/20260701120000_asset_pools.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "asset pools (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "1401fcc47277f2115c093151e6009fb3f7dce486005a147f80c0a79a39710f72"
+    },
+    {
+      "id": "20260701130000_harden_grants_pools_scanlogs",
+      "path": "migrations/20260701130000_harden_grants_pools_scanlogs.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "harden grants pools scanlogs (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "fc2991e6f792d026508494fadda284663fe6e7e76e32009192870b97c068e059"
+    },
+    {
+      "id": "20260701140000_notification_settings",
+      "path": "migrations/20260701140000_notification_settings.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "notification settings (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "715bce94bb97675719e331c6dc920a939493132e38456472749c5728e0e35fbd"
+    },
+    {
+      "id": "20260701141909_harden_storage_write_policies_role_path_aware",
+      "path": "migrations/20260701141909_harden_storage_write_policies_role_path_aware.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "harden storage write policies role path aware (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "cf018d42e9981bda79a0ce17f82531aa04a8a01b53c636110538ef705c84bd51"
+    },
+    {
+      "id": "20260701142912_consumable_stock_move_atomic_rpc",
+      "path": "migrations/20260701142912_consumable_stock_move_atomic_rpc.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "consumable stock move atomic rpc (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "69f802ba45cc95f1f6faf1001b422f9e5449b139e41645aa9669308cc58a2449"
+    },
+    {
+      "id": "20260701145434_high1_financial_column_protection_strict",
+      "path": "migrations/20260701145434_high1_financial_column_protection_strict.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "high1 financial column protection strict (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "d60fae797126eabb0c6c50636bca119c25bd32560babe2e0c87f4dd9d05d3f13"
+    },
+    {
+      "id": "20260703200000_protect_admin_accounts_from_it_manager",
+      "path": "migrations/20260703200000_protect_admin_accounts_from_it_manager.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "protect admin accounts from it manager (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "f16bc8a656c1e6a80cb01efadc10f188ed1528f17b12906d97a62e9e4a29b72b"
+    },
+    {
+      "id": "20260703201000_asset_custody_atomic_rpcs",
+      "path": "migrations/20260703201000_asset_custody_atomic_rpcs.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "asset custody atomic rpcs (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "26e8bb4bea7be7a286e740f1d811bacdd08552541c51075841462a61f0ca8b7f"
+    },
+    {
+      "id": "20260703202000_gate_request_items_by_request_status",
+      "path": "migrations/20260703202000_gate_request_items_by_request_status.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "gate request items by request status (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "645f2d973f0ee1f91151fa97fe0b6385486427755cf375cd3733f7022b68cff9"
+    },
+    {
+      "id": "20260703203000_pin_search_path_helper_functions",
+      "path": "migrations/20260703203000_pin_search_path_helper_functions.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "pin search path helper functions (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "d5d89876ceca93ad479cd5f5ac01477356d34fc74215576628d9a8f2abee0a12"
+    },
+    {
+      "id": "20260705120000_feature_exposure_settings",
+      "path": "migrations/20260705120000_feature_exposure_settings.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "feature exposure settings (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "b44cef9baed34d8df1e1bb2526a8324d59c976509a7e028e85926e4c9b4ea867"
+    },
+    {
+      "id": "20260705130000_asset_serial_exemption",
+      "path": "migrations/20260705130000_asset_serial_exemption.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "asset serial exemption (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "484ba682950bd6cb5f65c5fd41f4b5a9371f7db3cf363ef3ddc810ba9ce83cd3"
+    },
+    {
+      "id": "20260705131000_action_center",
+      "path": "migrations/20260705131000_action_center.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "action center (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "aca1397f599c66c323a441bb58349af8063a02c8ccbba00cdbe3636465fa07a2"
+    },
+    {
+      "id": "20260705132000_purchase_requests",
+      "path": "migrations/20260705132000_purchase_requests.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "purchase requests (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "8252cad6cdf969384cadce88a98c0616198b6b4260719bcd99a33140356fdf5d"
+    },
+    {
+      "id": "20260705140000_depreciation_rule_lifecycle",
+      "path": "migrations/20260705140000_depreciation_rule_lifecycle.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "depreciation rule lifecycle (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "9d308749261b8c61fe61af4cf61fc4b7abe93ebc8578e16526187b82366f6f44"
+    },
+    {
+      "id": "20260705150000_import_inventory_rpc",
+      "path": "migrations/20260705150000_import_inventory_rpc.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "import inventory rpc (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "55bd42deddf11a3b021ad1339a57d00c0d4d9dcc54a300076265c8d5a4f8ea6f"
+    },
+    {
+      "id": "20260705160000_granular_capabilities",
+      "path": "migrations/20260705160000_granular_capabilities.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "granular capabilities (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "76f2da3b6538ca5e50a513798e9209dacf11a47b56db3552f0b97305a910bd5d"
+    },
+    {
+      "id": "20260706100000_request_events",
+      "path": "migrations/20260706100000_request_events.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "request events (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "d1cfe8fccf4a3f9f15f0cee463b1ce62c54f91abd30148f51d988d08f5af16a3"
+    },
+    {
+      "id": "20260706100100_requests_portal_foundation",
+      "path": "migrations/20260706100100_requests_portal_foundation.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "requests portal foundation (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "0d4a5b55df2f1ab6a0a75951bd409e5c2a211060f1441f5b34c8177805a22526"
+    },
+    {
+      "id": "20260706100200_request_items_requested_vs_fulfilled",
+      "path": "migrations/20260706100200_request_items_requested_vs_fulfilled.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "request items requested vs fulfilled (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "96c0df2705f9f6bb1d68e490833fb81c89247507a6ba2b17fe654d9aeb2d37d6"
+    },
+    {
+      "id": "20260706110000_customer_portal_identity",
+      "path": "migrations/20260706110000_customer_portal_identity.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "customer portal identity (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "5d02747b2cb43bd2867e987dd919a0bed65f98f27a8989af8ab3acbc2493394b"
+    },
+    {
+      "id": "20260706110100_portal_rpcs",
+      "path": "migrations/20260706110100_portal_rpcs.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "portal rpcs (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "5a96ba7801a7236cd86513ba40f80f11cafd9917976f268c897d67fcca6cf4dc"
+    },
+    {
+      "id": "20260706115000_harden_portal_requester_ownership",
+      "path": "migrations/20260706115000_harden_portal_requester_ownership.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "harden portal requester ownership (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "e1ecd9b2375abb8ea103902c657686d1d7fdadeab63ca5d3c4764e1df3fa6a90"
+    },
+    {
+      "id": "20260706120000_request_attachments",
+      "path": "migrations/20260706120000_request_attachments.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "request attachments (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "7182c521295693444b1512468936b395285f7b7fd4fe7d344f9b990411714091"
+    },
+    {
+      "id": "20260706120100_request_attachment_rpcs",
+      "path": "migrations/20260706120100_request_attachment_rpcs.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "request attachment rpcs (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "ef4c864916b10fff1f0aecdd931802aac4d4b4bc4efba04f8352f7b2ed84512f"
+    },
+    {
+      "id": "20260706130000_request_item_purchase_bridge",
+      "path": "migrations/20260706130000_request_item_purchase_bridge.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "request item purchase bridge (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "42500ff14f5fd866d6f50ba542216b3cce447631c1cd04d06edd46dc2c6eaa7c"
+    },
+    {
+      "id": "20260706140000_customer_portal_settings",
+      "path": "migrations/20260706140000_customer_portal_settings.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "customer portal settings (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "654f387e3ae40bd3e4a252c17b1a42d0dc997e8645c75571d8e4a322e30fb5c3"
+    },
+    {
+      "id": "20260706140100_portal_settings_rpcs",
+      "path": "migrations/20260706140100_portal_settings_rpcs.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "portal settings rpcs (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "ce8ec2022e2fd1f30486bfb904b29e9a395e9a75db7541694947b2de05db0e4f"
+    },
+    {
+      "id": "20260706140200_portal_settings_review_fixes",
+      "path": "migrations/20260706140200_portal_settings_review_fixes.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "portal settings review fixes (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "25d0018271e611ac18cf868a118d02c912d13486a94ee2f88f4f0654b045e4a0"
+    },
+    {
+      "id": "20260706150000_customer_request_analytics",
+      "path": "migrations/20260706150000_customer_request_analytics.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "customer request analytics (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "c09e47c9e85db7b8e5df24742c9d2fbdfb1044b65e7d7546c49c3e9f1c3a847f"
+    },
+    {
+      "id": "20260707020347_rc1_anon_hardening",
+      "path": "migrations/20260707020347_rc1_anon_hardening.sql",
+      "kind": "migration",
+      "executionMode": "absorbed_by_baseline",
+      "purpose": "rc1 anon hardening (captured by the 2026-07-07 baseline and not replayed on top of it).",
+      "dependsOn": [
+        "baseline_20260707"
+      ],
+      "sha256": "9893131aee05a0bb6f0dce0b95bb8d64ca6f16e109ac68d2d68f38965d57c84a"
+    }
+  ],
+  "productionOnly": [
+    {
+      "id": "20260714100200_email_automation_cron",
+      "path": "migrations/20260714100200_email_automation_cron.sql",
+      "kind": "migration",
+      "executionMode": "production_manual_only",
+      "purpose": "email automation cron (excluded from local replay because it requires an approved Production-only execution window).",
+      "dependsOn": [
+        "20260714100100_email_automation_enqueue"
+      ],
+      "sha256": "f324e62ac4e4d59ed33cfae63251154861cbf0ddee7f59ddc4c6fc55b6d7320b"
+    },
+    {
+      "id": "20260809170000_production_reconciliation_non_email",
+      "path": "migrations/20260809170000_production_reconciliation_non_email.sql",
+      "kind": "migration",
+      "executionMode": "production_manual_only",
+      "purpose": "reviewed non-bootstrap, non-email Production reconciliation pack. (excluded from local replay because it requires an approved Production-only execution window).",
+      "dependsOn": [
+        "20260714100100_email_automation_enqueue"
+      ],
+      "sha256": "3e4bc0102580028b3763497397f1269ca06017d0871c5eae28d6f2f749c61f88"
+    },
+    {
+      "id": "20260809171000_production_email_disabled_schema",
+      "path": "migrations/20260809171000_production_email_disabled_schema.sql",
+      "kind": "migration",
+      "executionMode": "production_manual_only",
+      "purpose": "Production-only port of the reviewed email-automation schema, with (excluded from local replay because it requires an approved Production-only execution window).",
+      "dependsOn": [
+        "20260714100100_email_automation_enqueue"
+      ],
+      "sha256": "4b797a8172eed090c3c779b09d0c09582ea54e10863a0bfbc66190e7b6527725"
+    },
+    {
+      "id": "20260810020000_production_assets_archived_at_select_grant",
+      "path": "migrations/20260810020000_production_assets_archived_at_select_grant.sql",
+      "kind": "migration",
+      "executionMode": "production_manual_only",
+      "purpose": "Restore the non-financial archived_at projection required by the (excluded from local replay because it requires an approved Production-only execution window).",
+      "dependsOn": [
+        "20260714100100_email_automation_enqueue"
+      ],
+      "sha256": "8d66fe557b7991ae89528ae353574ca4a220390e10f80e09fe09a1c330349c90"
+    }
+  ]
+}

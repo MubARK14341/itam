@@ -1,0 +1,11 @@
+.demo-role-card{display:flex;align-items:center;gap:14px;min-height:98px;padding:18px;border:1px solid rgb(var(--line));border-radius:16px;background:rgb(var(--surface));box-shadow:0 2px 8px -4px rgb(23 36 53/.06);transition:border-color .16s,background-color .16s}
+.demo-role-card:hover{border-color:rgb(var(--brand));background:rgb(var(--surface-2))}.demo-role-card:disabled{opacity:.55;cursor:wait}.demo-role-card:focus-visible,.demo-tool:focus-visible{outline:3px solid rgb(var(--brand));outline-offset:3px}
+.demo-role-icon{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:40px;height:40px;border-radius:12px;background:rgb(var(--brand-soft));color:rgb(var(--brand-ink))}
+.demo-controls{position:fixed;inset-inline-start:14px;bottom:14px;z-index:40;display:flex;align-items:center;gap:4px;max-width:calc(100vw - 28px);padding:5px;border:1px solid rgb(var(--line));border-radius:12px;background:rgb(var(--surface));box-shadow:0 4px 18px rgb(23 36 53/.13)}
+.demo-disclosure{padding-inline:8px;font-size:10px;font-weight:600;color:rgb(var(--muted));white-space:nowrap}.demo-tool{display:flex;align-items:center;justify-content:center;gap:6px;min-height:34px;padding:5px 8px;border-radius:8px;font-size:11px;color:rgb(var(--ink));white-space:nowrap}.demo-tool:hover{background:rgb(var(--surface-2))}
+.demo-auth-simulation{position:fixed;inset-inline:16px;top:8px;z-index:60;margin:auto;max-width:680px;border:1px solid rgb(var(--line));border-radius:10px;background:rgb(var(--surface));padding:7px 10px;font-size:11px;text-align:center;color:rgb(var(--muted))}
+/* Keep Studio's chip color; opacity made its small count text fail contrast. */
+.ui-fchip>.opacity-70{opacity:1}
+@media(min-width:768px){.demo-controls{inset-inline-start:auto;inset-inline-end:14px}}
+@media(max-width:767px){.demo-controls{bottom:82px;inset-inline-start:8px;max-width:calc(100vw - 16px)}.demo-disclosure{max-width:120px;overflow:hidden;text-overflow:ellipsis;font-size:9px}.demo-login{padding-bottom:145px}.demo-auth-simulation{position:relative;inset:auto;margin:0 16px 140px}.demo-role-card{min-height:104px}.demo-login-intro h1{max-width:420px}}
+@media print{.demo-controls,.demo-auth-simulation,[data-demo-local-navigation-notice]{display:none}}

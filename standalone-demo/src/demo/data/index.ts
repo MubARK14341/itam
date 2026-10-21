@@ -1,0 +1,11 @@
+export { DEMO_PERSONAS,demoId,createSeed } from "./seed";
+export { DemoStore,createDemoStore,getDemoStore } from "./store";
+export { createDemoTransport,DEMO_RPC_NAMES,DEMO_TABLE_NAMES,DEMO_RPC_HANDLERS,readDemoTransportDiagnostics,clearDemoTransportDiagnostics } from "./transport";
+export { DEMO_SUPABASE_URL,DEMO_SUPABASE_ANON_KEY,getDemoSession,setDemoActor,setDemoAuthScenario,prepareDemoAuthRoute } from "./auth";
+export type { DemoPreparedAuthPath } from "./auth";
+export { createDemoAttachmentUrl,revokeDemoAttachmentUrl } from "./attachments";
+export { getDemoDashboardData } from "./dashboard";
+export type { DemoState,DemoActor,DemoRole,Row,OperationContext } from "./types";
+import { getDemoStore } from "./store";
+export const readDemoSnapshot=()=>getDemoStore().read();
+export const subscribeDemoStore=(listener:()=>void)=>getDemoStore().subscribe(listener);

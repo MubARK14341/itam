@@ -1,0 +1,13 @@
+node_modules/
+.next*/
+.expo*/
+dist/
+.demo-client/
+.env*
+!.env.example
+*.tsbuildinfo
+test-results/
+artifacts/
+.DS_Store
+.vercel/
+.netlify/
